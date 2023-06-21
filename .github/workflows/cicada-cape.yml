@@ -1,0 +1,34 @@
+name: Python Static Code Analysis
+
+on:
+  [push]
+
+jobs:
+  code-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install poetry
+
+      - name: Install project dependencies with Poetry
+        run: |
+          source venv/bin/activate
+          poetry install --no-root
+
+      - name: Run Bandit for static code analysis
+        run: |
+          source venv/bin/activate
+          poetry run bandit -r .
