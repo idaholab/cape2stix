@@ -4,31 +4,42 @@ on:
   [push]
 
 jobs:
-  code-analysis:
+  install-dependencies:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
+      - name: checkout
         uses: actions/checkout@v3
 
-      - name: Set up Python
+      - name: cache Poetry env
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.HOME }}/.cache/pypoetry
+          key: ${{ runner.os }}-poetry-${{ hashFiles('pyproject.toml') }}
+        
+      - name: set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-
-      - name: Install dependencies
+      - name: install poetry
         run: |
           python -m venv venv
           source venv/bin/activate
           pip install --upgrade pip
           pip install poetry
 
-      - name: Install project dependencies with Poetry
+      - name: setup poetry env
         run: |
           source venv/bin/activate
-          poetry install --no-root
+          poetry install
 
-      - name: Run Bandit for static code analysis
+  bandit:
+    needs: install-dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: run bandit
         run: |
           source venv/bin/activate
-          poetry run bandit -r .
+          poetry run bandit -r cape2stix todb capesubd capeplugin ama_deploy *.py
