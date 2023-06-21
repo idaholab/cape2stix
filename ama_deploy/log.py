@@ -35,9 +35,9 @@ def log_helper(args):
         
         if log_level == 0 :
             if l.name == "LOGS":
-                log_level = 30
+                log_level = 20
             else:
-                log_level=20
+                log_level=10
             
         l.setLevel(level=log_level)
         formatter = logging.Formatter(
