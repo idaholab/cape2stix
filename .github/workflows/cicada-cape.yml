@@ -4,7 +4,7 @@ on:
   [push]
 
 jobs:
-  install-dependencies:
+  install:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -41,5 +41,5 @@ jobs:
 
       - name: run bandit
         run: |
-          source venv/bin/activate
+          source install/venv/bin/activate
           poetry run bandit -r cape2stix todb capesubd capeplugin ama_deploy *.py
