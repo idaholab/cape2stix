@@ -30,7 +30,9 @@ jobs:
       - name: setup poetry env
         run: |
           source venv/bin/activate
-          poetry install
+          #poetry install
+          pwd
+          ls -lah
 
   bandit:
     needs: install
@@ -41,5 +43,7 @@ jobs:
 
       - name: run bandit
         run: |
+          pwd
+          ls -lah
           source install/venv/bin/activate
           poetry run bandit -r cape2stix todb capesubd capeplugin ama_deploy *.py
