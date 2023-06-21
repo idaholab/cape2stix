@@ -1,0 +1,14 @@
+[Unit]
+Description=capesubd
+After=network-online.target
+
+[Service]
+Type=simple
+Restart=always
+WorkingDirectory=/home/{user}/cape2stix/
+ExecStart=/usr/local/bin/poetry run python3 capesubd/dir_to_reports.py
+User={user}
+
+[Install]
+WantedBy=multi-user.target
+

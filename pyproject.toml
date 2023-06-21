@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "cape2stix"
+version = "0.1.0"
+description = "Scripts to convert CAPE output to STIX and various utilities."
+authors = ["Michael Cutshaw <michael.cutshaw@inl.gov>", "Zachary Priest <zachary.priest@inl.gov>", "Will Brant <william.brant@inl.gov>"]
+packages = [
+        { include = "cape2stix"},
+        { include = "capesubd"},
+
+]
+
+[tool.poetry.dependencies]
+python = ">=3.7,<=3.11"
+setuptools = "*"
+stix2 = "^3.0.1"
+taxii2-client = "^2.3.0"
+tqdm = "^4.64.0"
+requests = "^2.27.1"
+pyorient = { git = "https://github.com/orientechnologies/pyorient.git" }
+stix2-validator = { git = "https://github.com/oasis-open/cti-stix-validator.git" }
+sphinx-rtd-theme = "^1.0.0"
+bandit = "^1.7.4"
+flake8 = "^4.0.1"
+black = "^22.3.0"
+genson = "^1.2.2"
+jupyter = "^1.0.0"
+matplotlib = "^3.5.2"
+aiofile = "^3.8.1"
+neo4j = "^5.2.0"
+aiofiles = "^22.1.0"
+Flask = "^2.2.2"
+
+[tool.poetry.dev-dependencies]
+
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

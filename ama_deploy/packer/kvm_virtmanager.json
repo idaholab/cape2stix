@@ -1,0 +1,68 @@
+{
+  "builders": [
+    {
+      "boot_wait": "5s",
+      "cpus": "{{ user `cpus` }}",
+      "disk_size": "{{user `disk_size`}}",
+      "iso_url": "{{ user `disk_image` }}",
+      "iso_checksum": "none",
+      "headless": "{{ user `headless` }}",
+      "memory": "{{ user `memory` }}",
+      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-qemu",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "ssh_port": 22,
+      "ssh_timeout": "1000s",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "type": "qemu",
+      "vm_name": "{{ user `template` }}",
+      "qemuargs": [
+        [
+          "-m",
+          "{{ user `memory` }}"
+        ],
+        [
+          "-display",
+          "{{ user `qemu_display` }}"
+        ],
+	 [                                                                                                                       "-cpu",                                                                                                         "host"                                                                                                  ]     
+      ],
+      "accelerator": "kvm",
+      "disk_image": true,
+      "use_backing_file": true
+    }
+  ],
+  "provisioners": [
+    {
+      "environment_vars": [
+        "HOME_DIR=/home/vagrant",
+        "http_proxy={{user `http_proxy`}}",
+        "https_proxy={{user `https_proxy`}}",
+        "no_proxy={{user `no_proxy`}}"
+      ],
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
+      "expect_disconnect": true,
+      "scripts": [
+        "{{template_dir}}/../bash_scripts/certs.sh",
+        "{{template_dir}}/../bash_scripts/desktop.sh",
+        "{{template_dir}}/../bash_scripts/kvm.sh",
+        "{{template_dir}}/../bash_scripts/virtmanager.sh"
+      ],
+      "type": "shell"
+    }
+  ],
+  "variables": {
+    "build_directory": "./builds",
+    "disk_image": "bento/builds/packer-ubuntu-22.04-x86_64-qemu/ubuntu-22.04-amd64",
+    "build_timestamp": "{{isotime \"20060102150405\"}}",
+    "cpus": "2",
+    "disk_size": "131072",
+    "headless": "true",
+    "memory": "8196",
+    "name": "kvmvirtmanager",
+    "template": "kvmvirtmanager",
+    "qemu_display": "none",
+    "version": "TIMESTAMP",
+    "ans_groups": "cape"
+  }
+}

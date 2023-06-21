@@ -1,0 +1,51 @@
+{
+    "builders": [
+        {
+            "boot_wait": "5s",
+            "cpus": "{{ user `cpus` }}",
+            "disk_size": "{{user `disk_size`}}",
+            "iso_url": "{{ user `disk_image` }}",
+            "iso_checksum": "none",
+            "headless": "{{ user `headless` }}",
+            "memory": "{{ user `memory` }}",
+            "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-qemu",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "ssh_port": 22,
+            "ssh_timeout": "1000s",
+            "ssh_username": "vagrant",
+            "ssh_password": "vagrant",
+            "type": "qemu",
+            "vm_name": "{{ user `template` }}",
+            "qemuargs": [
+              [ "-m", "{{ user `memory` }}" ],
+              [ "-display", "{{ user `qemu_display` }}" ]
+            ],
+            "accelerator": "kvm",
+            "disk_image": true,
+            "use_backing_file": true
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "ansible",
+            "playbook_file": "<ansible_playbook>",
+            "groups": "{{ user `ans_groups` }}",
+            "user": "vagrant",
+            "use_proxy": false
+          }
+    ],
+    "variables": {
+        "build_directory": "./builds",
+        "disk_image": "<disk_path>",
+        "build_timestamp": "{{isotime \"20060102150405\"}}",
+        "cpus": "2",
+        "disk_size": "65536",
+        "headless": "<headless>",
+        "memory": "8196",
+        "name": "<name>",
+        "template": "<name>",
+        "qemu_display": "<qemu_display>",
+        "version": "TIMESTAMP",
+        "ans_groups": "<ansible_groups>"
+    }
+}
