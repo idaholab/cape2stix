@@ -1,45 +1,65 @@
-name: Python Static Code Analysis
+name: CICaDa-CAPE
 
-on:
-  [push]
+on: push
 
 jobs:
   install:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      #----------------------------------------------
+      #       check-out repo and set-up python
+      #----------------------------------------------
+      - name: Check out repository
         uses: actions/checkout@v3
-
-      - name: cache Poetry env
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.HOME }}/.cache/pypoetry
-          key: ${{ runner.os }}-poetry-${{ hashFiles('pyproject.toml') }}
-        
-      - name: set up Python
+      - name: Set up python
+        id: setup-python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
-      - name: install poetry
-        run: |
-          python -m venv venv
-          source venv/bin/activate
-          pip install --upgrade pip
-          pip install poetry
+          python-version: '3.11'
+      #----------------------------------------------
+      #  -----  install & configure poetry  -----
+      #----------------------------------------------
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
 
-      - name: setup poetry env
+      #----------------------------------------------
+      #       load cached venv if cache exists
+      #----------------------------------------------
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      #----------------------------------------------
+      # install dependencies if cache does not exist
+      #----------------------------------------------
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
+      #----------------------------------------------
+      # install your root project, if required
+      #----------------------------------------------
+      - name: Install project
+        run: poetry install --no-interaction
+      #----------------------------------------------
+      #              run test suite
+      #----------------------------------------------
+      - name: tests
         run: |
-          source venv/bin/activate
-          #poetry install
-          pwd
-          ls -lah
+          # source .venv/bin/activate
+          pwd && ls -lah
 
   bandit:
     needs: install
     runs-on: ubuntu-latest
     steps:
-      # - name: checkout
-      #   uses: actions/checkout@v3
+      - name: checkout
+        uses: actions/checkout@v3
 
       - name: run bandit
         run: |
