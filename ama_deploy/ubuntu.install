@@ -3,7 +3,7 @@
 wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 sudo apt update && sudo apt install packer -y
-sudo apt install -y qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils python3-pip sshpass virt-manager qemu-utils python3 docker-compose
+sudo apt install -y qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils python3-pip python3-apt sshpass virt-manager qemu-utils python3 docker-compose
 python3 -m pip install poetry 
 sudo usermod -a -G qemu,libvirt-qemu,kvm $SUDO_USER
 cd bento
