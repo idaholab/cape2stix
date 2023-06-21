@@ -151,7 +151,9 @@ jobs:
 #                  DOCKER
 #------------------------------------------------  
   build_docker:
-    runs-on: docker:20-dind
+    runs-on: ubuntu-latest
+    container:
+      image: docker:20-dind
     steps:
       - name: checkout
         uses: actions/checkout@v3
