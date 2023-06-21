@@ -3,79 +3,61 @@ name: CICaDa-CAPE
 on: push
 
 jobs:
-  install:
+  init:
     runs-on: ubuntu-latest
     steps:
-      #----------------------------------------------
-      #       check-out repo and set-up python
-      #----------------------------------------------
-      - name: Check out repository
+    #-----------------------setup steps
+      - name: checkout
         uses: actions/checkout@v3
-      - name: Set up python
+      - name: python-setup
         id: setup-python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      #----------------------------------------------
-      #  -----  install & configure poetry  -----
-      #----------------------------------------------
-      - name: Install Poetry
+    #-----------------------poetry install
+      - name: poetry-install
         uses: snok/install-poetry@v1
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
           installer-parallel: true
-
-      #----------------------------------------------
-      #       load cached venv if cache exists
-      #----------------------------------------------
-      - name: Load cached venv
+    #-----------------------setup steps
+      - name: load-venv
         id: cached-poetry-dependencies
         uses: actions/cache@v3
         with:
           path: .venv
           key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-      #----------------------------------------------
-      # install dependencies if cache does not exist
-      #----------------------------------------------
-      - name: Install dependencies
+    #-----------------------depends and project install
+      - name: install-dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: poetry install --no-interaction --no-root
-      #----------------------------------------------
-      # install your root project, if required
-      #----------------------------------------------
-      - name: Install project
+
+      - name: install-project
         run: poetry install --no-interaction
-      #----------------------------------------------
-      #              run test suite
-      #----------------------------------------------
-      - name: tests
-        run: |
-          # source .venv/bin/activate
-          pwd && ls -lah
 
   bandit:
-    needs: install
+    needs: init
     runs-on: ubuntu-latest
+    #-----------------------setup steps
     steps:
-      - name: Check out repository
+      - name: checkout
         uses: actions/checkout@v3
-      - name: Set up python
+      - name: python-setup
         id: setup-python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-
-      - name: Load cached venv
+      - name: load-venv
         id: cached-poetry-dependencies
         uses: actions/cache@v3
         with:
           path: .venv
           key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-     
-      - name: run bandit
+     #------------------------run bandit
+      - name: run-bandit
         run: |
-          pwd
-          ls -lah
-          source install/venv/bin/activate
+          source .venv/bin/activate
           poetry run bandit -r cape2stix todb capesubd capeplugin ama_deploy *.py
+
+
