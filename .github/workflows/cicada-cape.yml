@@ -33,7 +33,7 @@ jobs:
           poetry install
 
   bandit:
-    needs: install-dependencies
+    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: checkout
