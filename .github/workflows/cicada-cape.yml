@@ -150,10 +150,10 @@ jobs:
 #------------------------------------------------
 #                  DOCKER
 #------------------------------------------------  
-build_docker:
-  runs-on: docker:20-dind
-  steps:
-    - name: checkout
-      uses: actions/checkout@v3
-    - name: BUILD_DOCKER
-      run: docker build -t cape2stix .
+  build_docker:
+    runs-on: docker:20-dind
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: BUILD_DOCKER
+        run: docker build -t cape2stix .
