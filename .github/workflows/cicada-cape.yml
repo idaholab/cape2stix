@@ -110,43 +110,43 @@ jobs:
 #                  PAGES
 #------------------------------------------------  
   pages:
-  needs: init
-  runs-on: ubuntu-latest
-  steps:
-  #-----------------------setup steps
-    - name: checkout
-      uses: actions/checkout@v3
-    - name: python-setup
-      id: setup-python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-    - name: poetry-install
-      uses: snok/install-poetry@v1
-      with:
-        virtualenvs-create: true
-        virtualenvs-in-project: true
-        installer-parallel: true
-    - name: load-venv
-      id: cached-poetry-dependencies
-      uses: actions/cache@v3
-      with:
-        path: .venv
-        key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-  #------------------------run pages
-    - name: PAGES
-      run: |
-        cd docs
-        poetry run sphinx-apidoc -o capesubd ../capesubd  
-        poetry run sphinx-apidoc -o cape2stix ../cape2stix 
-        poetry run make html
-        mv _build/html/ ../public/
-  #------------------------archive
-    - name: archive
-      uses: actions/upload-artifact@v3
-      with:
-        name: public
-        path: public/
+    needs: init
+    runs-on: ubuntu-latest
+    steps:
+    #-----------------------setup steps
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: python-setup
+        id: setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: poetry-install
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+      - name: load-venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+    #------------------------run pages
+      - name: PAGES
+        run: |
+          cd docs
+          poetry run sphinx-apidoc -o capesubd ../capesubd  
+          poetry run sphinx-apidoc -o cape2stix ../cape2stix 
+          poetry run make html
+          mv _build/html/ ../public/
+    #------------------------archive
+      - name: archive
+        uses: actions/upload-artifact@v3
+        with:
+          name: public
+          path: public/
 #------------------------------------------------
 #                  DOCKER
 #------------------------------------------------  
