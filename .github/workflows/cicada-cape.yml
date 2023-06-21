@@ -2,6 +2,11 @@ name: CICADA-CAPE
 
 on: push
 
+env:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  PY_TO_SCAN: "cape2stix todb capesubd capeplugin ama_deploy *.py"
+  INTERPRETER: "python3"
+
 jobs:
   init:
     runs-on: ubuntu-latest
