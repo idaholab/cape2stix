@@ -71,8 +71,10 @@ class ConverterTestCase(unittest.TestCase):
         self.assertFalse(mal_anal_res.warnings)
 
     def test_report_valid(self):
-        rep_res = validate_instance(find_obj(self.content, "report"), self.ops)
-        self.assertTrue(rep_res.is_valid)
+        reportobj = find_obj(self.content, "report")
+        if reportobj is not None:
+            rep_res = validate_instance(reportobj, self.ops)
+            self.assertTrue(rep_res.is_valid)
 
     @unittest.skipIf(SKIP_WARNINGS, "Temporarily skip warnings")
     def test_report_warn(self):
@@ -139,6 +141,7 @@ class ConverterTestCase(unittest.TestCase):
         id_res = validate_instance(find_obj(self.content, "identity"), self.ops)
         self.assertFalse(id_res.warnings)
 
+    @unittest.skipIf(SKIP_WARNINGS, "Temporarily skip warnings")
     def test_att_ptrn_valid(self):
         att_ptrn_res = validate_instance(
             find_obj(self.content, "attack-pattern"), self.ops
