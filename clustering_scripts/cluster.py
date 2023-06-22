@@ -5,7 +5,8 @@ import os
 #from tqdm import tqdm
 path = './updated_json/just_rels.json'
 try:
-	os.remove('./results.json')
+	if os.path.isfile('./results.json'):
+		os.remove('./results.json')
 except Exception as e:
 	logging.exception(e)
 

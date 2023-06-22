@@ -5,6 +5,7 @@ There is a free community instance online which anyone can use: [CAPE Sandbox](h
 This project contains git submodules. Use the following commands to ensure all submodules are available
 
     git clone --recursive
+    cd cape2stix/
     git submodule update --init --recursive
 
 
@@ -60,3 +61,4 @@ The resulting STIX JSON file will be placed in [output](output/).<br>Note: this 
 ## Notes
 
 - [Neo4j_README.md](cape2stix/todb/neo4j_readme/Neo4j_README.md) contains further documentation on using Neo4j
+- when running `poetry install`, poetry may generate errors. Ignore these unless they cause the command to fail altogether
