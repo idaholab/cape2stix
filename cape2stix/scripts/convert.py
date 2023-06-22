@@ -253,7 +253,7 @@ class Cape2STIX:
         except Exception as e:
             logging.warning('Exception when grabbing from malware bazaar')
             logging.exception(e)
-            
+            return None
         if res["query_status"] != 'ok':
             logging.warning(f'Malware Bazaar Response: {res}')
             return None
