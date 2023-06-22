@@ -1,13 +1,13 @@
 # Copyright 2023, Battelle Energy Alliance, LLC
 import sys
-import subprocess
+import subprocess # nosec B404
 import json
 from pprint import pprint
 
 MAC_PREFIX = "52:54:00:a0:cc:"
 
 
-interface_data_proc = subprocess.run(["ip", "-j", "a"], capture_output=True, text=True)
+interface_data_proc = subprocess.run(["ip", "-j", "a"], capture_output=True, text=True) # nosec B603, B607
 interface_data = json.loads(interface_data_proc.stdout)
 bridge = "virbr1"
 d = {}
@@ -16,15 +16,13 @@ for item in interface_data:
         d[item["ifname"]] = item
         ifname = item["ifname"]
         args = ["sudo", "nmcli", "connection", "modify", ifname, "master", bridge]
-        subprocess.run(args)
+        subprocess.run(args) # nosec B603
         args = ["sudo", "nmcli", "connection", "down", ifname]
-        subprocess.run(args)
+        subprocess.run(args) # nosec B603
         args = ["sudo", "nmcli", "connection", "up", ifname]
-        subprocess.run(args)
+        subprocess.run(args) # nosec B603
 
 
-# args = 'nmcli connection add type bridge ifname virbr1 con-name virbr1 ipv4.method manual ipv4.addresses 192.168.13.1/24'.split(' ')
-# subprocess.run(args)
 for x in range(2, 10):
     ifname = f"tap{str(x)}"
     if ifname in d:
@@ -56,7 +54,7 @@ for x in range(2, 10):
             "master",
             bridge,
         ]
-        subprocess.run(args)
+        subprocess.run(args) # nosec B603
         args = [
             "sudo",
             "nmcli",

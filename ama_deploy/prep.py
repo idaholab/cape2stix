@@ -4,8 +4,7 @@
 from uuid import uuid4
 from glob import iglob
 from pathlib import Path
-# import subprocess
-from subprocess import Popen, PIPE, STDOUT
+from subprocess import Popen, PIPE, STDOUT # nosec B404
 import os
 import contextlib
 import config
@@ -43,7 +42,7 @@ def make_backing(in_file, out_file):
         args = ["qemu-img", "create", "-f", "qcow2", "-F",
                 "qcow2", "-b", in_file.name, out_file.name]
 
-        sub = Popen(args, stdout=PIPE, stderr=STDOUT)
+        sub = Popen(args, stdout=PIPE, stderr=STDOUT) # nosec B603
         with sub.stdout:
             for line in iter(sub.stdout.readline, b''): # b'\n'-separated lines
                 log.warning(line)

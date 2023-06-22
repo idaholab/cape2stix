@@ -1,10 +1,7 @@
 # Copyright 2023, Battelle Energy Alliance, LLC
-import tomli
-from tqdm import tqdm
 from hashlib import sha256
-from subprocess import run
+from subprocess import run # nosec B404
 import tarfile
-import shutil
 import os
 
 
@@ -47,7 +44,7 @@ def convertqcow2(in_path, out_path):
         in_path,
         out_path,
     ]
-    process = run(cmd)
+    process = run(cmd) # nosec B603, B607
     process.check_returncode()
 
 

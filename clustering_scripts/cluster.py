@@ -1,13 +1,13 @@
 # Copyright 2023, Battelle Energy Alliance, LLC
 import json
-import sys
+import logging
 import os
 #from tqdm import tqdm
 path = './updated_json/just_rels.json'
 try:
 	os.remove('./results.json')
-except:
-	pass
+except Exception as e:
+	logging.exception(e)
 
 with open(path, 'r') as file:
 	data = json.load(file)

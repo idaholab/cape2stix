@@ -1,8 +1,8 @@
 "Verifies dependencies and builds AMA-Deploy from scratch"
 # Copyright 2023, Battelle Energy Alliance, LLC
 import traceback
-import subprocess
-from subprocess import Popen, PIPE, STDOUT
+import subprocess # nosec B404
+from subprocess import Popen, PIPE, STDOUT # nosec B404
 import os
 import sys
 import argparse
@@ -69,7 +69,7 @@ def check_install():
         if pkg not in apt_cache:
             log.debug(f"{pkg} was not installed")
             args = ["./ubuntu.install"]
-            subprocess.run(args, check=True)
+            subprocess.run(args, check=True) # nosec B603
             return None
 
     log.debug("checkInstall() finished")
@@ -79,9 +79,9 @@ def cape_install():
     "Runs the script to build and run the cape and neo4j docker containers"
     print(os.getcwd())
     args = ["./bash_scripts/build_cape.sh"]
-    with Popen(
+    with Popen( # nosec B603
         args, stdout=PIPE, stderr=subprocess.STDOUT
-    ) as sub:   # noqa: E501
+    ) as sub:   # noqa: E501 
         subi = iter(sub.stdout.readline, b"")
         for line in subi:
             log.debug(line.decode().rstrip('\n'))
@@ -91,14 +91,14 @@ def check_bento():
     "ensures the bento submodule is initialized"
     args = ["ls", "bento/packer_templates"]
     # pylint: disable=unspecified-encoding
-    sub = subprocess.call(
+    sub = subprocess.call( # nosec B603
         args, stdout=open(os.devnull, "w"), stderr=subprocess.STDOUT
     )  # noqa: E501
     if sub != 0:
         log.debug("trying to git bento submodule")
-        subprocess.call(
+        subprocess.call( # nosec B603, B607
             ["git", "submodule", "update", "--init", "--recursive"], user=UID   # noqa: E501
-        )
+        ) 
 
     log.debug("checkBento() finished")
 # --------------
@@ -108,7 +108,7 @@ def check_bento():
 # --------------
 def packer_exc(arg, p_log):
     "runs subprocess.Popen for packer commands & sends output to packer_log()"
-    with Popen(arg, **popen_kwargs) as packer:
+    with Popen(arg, **popen_kwargs) as packer: # nosec B603
         packer_log(packer, p_log)
         log.info(f"ATTN - {p_log.name} has finished")
 # --------------
@@ -209,8 +209,8 @@ def vinstall():
         log.info("aborting")
         return
 
-    with Popen(["bash", "./vinstall.sh"],
-               stdout=PIPE, stderr=STDOUT) as vin:
+    with Popen(["bash", "./vinstall.sh"], # nosec B603, B607
+               stdout=PIPE, stderr=STDOUT) as vin: 
         slog(vin.stdout)
     log.debug("FINISH vinstall")
 

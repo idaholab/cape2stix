@@ -105,7 +105,7 @@ jobs:
       - name: BANDIT
         run: |
           source .venv/bin/activate
-          poetry run bandit -r cape2stix todb capesubd capeplugin ama_deploy *.py
+          poetry run bandit -r -x .venv,venv cape2stix capesubd capeplugin ama_deploy clustering_scripts notebooks *.py
 #------------------------------------------------
 #                  PAGES
 #------------------------------------------------  
