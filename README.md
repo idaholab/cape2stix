@@ -31,7 +31,7 @@ python3 -m pip install poetry # install poetry
 poetry install                # install dependencies under poetry environment
 poetry shell                  # enter the poetry environment
 ```
-A virtual environment will be created that can now be accessed by running `poetry shell`. This should be used to run all Python scripts.
+A virtual environment will be created that can now be accessed by running `poetry shell`. This should be used to run all cape2stix Python scripts, but should not be used for anything under ama_deploy.
 
 ### Automated Installation
 [run.py](ama_deploy/run.py) can build and deploy the docker containers necessary for cape2stix and the neo4j database. For more information on how to use this tool, see the [ama_deploy documentation](ama_deploy/README.md#L35)

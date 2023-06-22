@@ -42,8 +42,9 @@ Please follow each step for initial setup
     ```
 
 ## Using CAPE
+Once the CAPE system has finished building, it can be connected to via Virtual Machine Manager or by taking the qcow2 image found under `ama_deploy/builds/packer-capeextra/`, converting it to a .raw, and writing that .raw onto a physical system.
 ### Virtual Machine Manager
-
+todo: further documenation on virt-manager. include screenshots
 - spawned virtual machines can be accessed through Virtual Machine Manager by connecting with ssh
 - credentials are vagrant:vagrant
 - connecting to the CAPE system via ssh must be done with an ssh key. An ssh key can be created with the command:
@@ -51,8 +52,9 @@ Please follow each step for initial setup
   ssh-keygen
   ```
 ### CAPE-Web
-- Open a browser and conect to http://localhost:8000
-- Click `submit` to upload malware samples. Select 
+- Be on the CAPE system provided by the build
+- Open a browser and connect to http://localhost:8000
+- Click `submit` to upload malware samples. Select malware samples from the file system via file-explorer (nautilus)
   - [test_samples/](test_samples/) contain non-malware programs that can be detonated in CAPE to replicate the effects of malware in the sandbox
 - Alternatively, users can set up automatic analysis of the samples contained under a directory with the [capesubd](../capesubd/README.md) service
 
