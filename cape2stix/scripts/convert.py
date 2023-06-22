@@ -248,7 +248,12 @@ class Cape2STIX:
         "retrieves the tags from malwarebazaar"
         data = {'query': 'get_info', 'hash': self.fhash["sha256"]}
         url = "https://mb-api.abuse.ch/api/v1/"
-        res = requests.post(url, data=data, timeout=20).json() # where r is the response of the post request
+        try:
+            res = requests.post(url, data=data, timeout=20).json() # where r is the response of the post request
+        except Exception as e:
+            logging.warning('Exception when grabbing from malware bazaar')
+            logging.exception(e)
+            
         if res["query_status"] != 'ok':
             logging.warning(f'Malware Bazaar Response: {res}')
             return None
