@@ -2,7 +2,7 @@
 import sys, json
 
 counts = {}
-with open('./results.txt', 'r') as in_file:
+with open('./results.json', 'r') as in_file:
 	for line in in_file:
 		count = line.split(' ')[2]
 		count = count[:-2] #Remove new line and parenthesis character
