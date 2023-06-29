@@ -32,6 +32,7 @@ from stix2 import (
     WindowsRegistryKey,
     IPv4Address,
     NetworkTraffic,
+    parse
 )
 from cape2stix.core.util import (
     genRel,
@@ -44,6 +45,7 @@ from cape2stix.core.util import (
 )
 from cape2stix.core.stix_loader import StixLoader
 from cape2stix.core.mitreattack import AttackGen
+
 
 
 class Cape2STIX:
@@ -65,7 +67,8 @@ class Cape2STIX:
         self.objects = []
         self.fspec={}
         self.fhash={}
-
+        self.whitelist=[]
+        
     def firstTimeSetup(self):
         pass
         # sup_files = os.path.join(os.path.dirname(__file__), "sup_files")
@@ -268,7 +271,7 @@ class Cape2STIX:
     def genMalware(self):
         "generates the primary malware object and retrieves tags"
         tags = self.getTags()
-        print(tags)
+        logging.debug(tags)
         if "sha256" in self.content["info"]["parent_sample"]:
             malware_obj = self.create_object(
                 Malware,
@@ -696,7 +699,7 @@ def parse_args(args):
 
     return parser.parse_args(args)
 
-
+@timing
 async def convert_file(args, sem=None):
     if sem is not None:
         await sem.acquire()
@@ -711,6 +714,25 @@ async def convert_file(args, sem=None):
     finally:
         if sem is not None:
             sem.release()
+
+stix_uuid5 = '[a-z0-9-]+--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-5[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}'
+
+# TODO: figure out the best place to call this function
+# TODO: look briefly at performance if we output a dict instead of a list with key=type and val=id
+# def parse_benign(benign_file):
+#     """parses a stix file and builds a list of UUIDv5s such 
+#        that they can be removed from the converted file"""
+#     if os.path.exists(benign_file):
+#         with open(benign_file) as b:
+#             benign = parse(b, allow_custom=True)
+#             return [obj.id for obj in benign.objects if re.match(stix_uuid5, obj.id)]
+
+# @timing
+# async def parse_malign(malign_stix, benign_list):
+#     for obj in malign_stix:
+#         # if obj.id in benign_list[obj.type]: #TODO: I would like to test this over just iterating over a list, but I need to change parse_benign
+#         if obj.id in benign_list:
+#             print("todo:remove obj")
 
 
 @timing
@@ -749,6 +771,7 @@ async def _main():
                             sem=sem,
                         )
                     )
+                    # promises.append(parse_malign()) #TODO: implement parse_malign
                 await asyncio.gather(*promises)
             else:
                 file_path = args.file

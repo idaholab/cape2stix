@@ -173,3 +173,4 @@ cape2stix/todb/neo4jdata/
 .vscode/
 clustering_scripts/updated_json/just_rels.json
 *results.json
+output/
