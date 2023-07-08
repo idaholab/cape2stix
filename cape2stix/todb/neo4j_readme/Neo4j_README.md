@@ -14,7 +14,7 @@ Run the DMG file directly or move it to Applications and run like a traditional 
 
 ## Database Setup
 Create a database through the GUI.
-If a conflicts occured popup is displayed, make a note of the returned configuration ports:
+If a ***Conflicts occured*** pop-up is displayed, make a note of the returned configuration ports:
 
 
 <img src="conflicts.png"  width="500" height="150">

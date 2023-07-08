@@ -42,6 +42,8 @@ Please follow each step for initial setup
     ```
 
 ## Using CAPE
+The result of run.py will be an image containing CAPE and the virtual machines. The two usage options are Virtual Machine Manager or Manual Install 
+
 ### Virtual Machine Manager
 
 - spawned virtual machines can be accessed through Virtual Machine Manager by connecting with ssh
@@ -50,13 +52,20 @@ Please follow each step for initial setup
   ```
   ssh-keygen
   ```
-### CAPE-Web
+
+### Manual Install
+- The image will be under builds/packer-capeextra
+	- Convert the qcow2 to a .raw and write the .raw on a system with `dd`
+	- that command might look like `dd if=/path/to/image of=/dev/sdx bs=2048M
+
+## CAPE-Web
 - Open a browser and conect to http://localhost:8000
 - Click `submit` to upload malware samples. Select 
-  - [test_samples/](test_samples/) contain non-malware programs that can be detonated in CAPE to replicate the effects of malware in the sandbox
+  - [cape2stix/ama_deploy/test_samples/](cape2stix/ama_deploy/test_samples/) contain non-malware programs that can be detonated in CAPE to replicate the effects of malware in the sandbox
 - Alternatively, users can set up automatic analysis of the samples contained under a directory with the [capesubd](../capesubd/README.md) service
+- Once a report is made, it can be downloaded by clicking `TODO: find the exact location users will find it on cape`
 
-### Notes:
+## Notes:
 - The CAPE web-browser may not appear to load properly if using virtualization. This can be amended by adjusting the size of the browser with Ctrl (+/-)
 
 - run.sh has strange output. If a build is succeeding it will have output similar to the following:
