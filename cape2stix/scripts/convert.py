@@ -46,7 +46,21 @@ from cape2stix.core.util import (
 from cape2stix.core.stix_loader import StixLoader
 from cape2stix.core.mitreattack import AttackGen
 
+# pylint: disable=expression-not-assigned
 
+stix_uuid5 = '[a-z0-9-]+--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-5[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}'
+
+def parse_benign(benign_file):
+    """parses a stix file and builds a list of UUIDv5s such 
+       that they can be removed from the converted file"""
+    if os.path.exists(benign_file):
+        with open(benign_file) as b:
+            b = parse(b, allow_custom=True)
+            pre = {obj.type: [] for obj in b.objects if re.match(stix_uuid5, obj.id)}
+            [pre[obj.type].append(obj.id) for obj in b.objects if re.match(stix_uuid5, obj.id)]
+            return pre
+
+benign = parse_benign("cape2stix/tests/test_benign.json") # TODO: ATTN: this is a hard-coded benign test file. needs patching out
 
 class Cape2STIX:
     """
@@ -134,10 +148,20 @@ class Cape2STIX:
                     src = main_obj
                     target = obj_to_connect
                 new_rels.extend(self.create_rel_many(src, target, rel_type=rel_type))
-        self.objects.extend(objects + new_rels)
+        self.objects.extend(objects + new_rels) # ATTN: why is this list here? Does it ever matter or does self.sl take care of all that?
         for item in objects + new_rels + objs_to_connect:
             self.sl.add_item(item)
         return objs_to_connect, objects
+
+    @timing
+    def clean_benign(self, benign_list):
+        """Compares potentially malign objects to benign objects. 
+        If the objects match, the potentially malign object is benign. 
+        It is then removed from the output."""
+        for obj in self.objects:
+            if obj.type in benign_list and obj.id in benign_list[obj.type]:
+                # TODO: remove the objects 
+                self.sl.rm_item(obj.id)
 
     @timing
     async def convert(self, outpath=None):
@@ -202,6 +226,8 @@ class Cape2STIX:
             self.add_objects(
                 self.genNetworkTraffic(), rel_type="uses", main_obj=malware_obj
             )
+
+            self.clean_benign(benign) # parses current report and removes benign objects
 
             if outpath is not None:
                 logging.info(f"finished with {outpath}")
@@ -717,22 +743,9 @@ async def convert_file(args, sem=None):
 
 stix_uuid5 = '[a-z0-9-]+--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-5[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}'
 
-# TODO: figure out the best place to call this function
-# TODO: look briefly at performance if we output a dict instead of a list with key=type and val=id
-# def parse_benign(benign_file):
-#     """parses a stix file and builds a list of UUIDv5s such 
-#        that they can be removed from the converted file"""
-#     if os.path.exists(benign_file):
-#         with open(benign_file) as b:
-#             benign = parse(b, allow_custom=True)
-#             return [obj.id for obj in benign.objects if re.match(stix_uuid5, obj.id)]
+# TODO: -wb figure out the best place to call this function
+# TODO: -wb look briefly at performance if we output a dict instead of a list with key=type and val=id
 
-# @timing
-# async def parse_malign(malign_stix, benign_list):
-#     for obj in malign_stix:
-#         # if obj.id in benign_list[obj.type]: #TODO: I would like to test this over just iterating over a list, but I need to change parse_benign
-#         if obj.id in benign_list:
-#             print("todo:remove obj")
 
 
 @timing
@@ -771,7 +784,6 @@ async def _main():
                             sem=sem,
                         )
                     )
-                    # promises.append(parse_malign()) #TODO: implement parse_malign
                 await asyncio.gather(*promises)
             else:
                 file_path = args.file

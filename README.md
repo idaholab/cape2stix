@@ -18,7 +18,7 @@ The pipeline is as follows:
 
 
 ## Automated Malware Analysis Deployment
-[ama_deploy/](ama_deploy/) is the directory containing all setup for building CAPE from scratch using virtual machine images. In addition to deploying CAPE, it also contains the functionality to setup the cape2stix and neo4j docker containers. See [ama_deploy documentation](ama_deploy/README.md#command-description) for further instructions. Users can return to this page after exporting malware reports from CAPE; the user will then be ready to use the [cape2stix converter](./README.md#cape2stix-1).<br>**The assumed target for deployment is ubuntu 22LTS or similar.**
+[ama_deploy/](ama_deploy/) is the directory containing all setup for building CAPE from scratch using virtual machine images. In addition to deploying CAPE, it also contains the functionality to setup the cape2stix and neo4j docker containers. See [ama_deploy documentation](ama_deploy/README.md#command-description) for further instructions. Users can return to this page after exporting malware reports from [CAPE-Web](./ama_deploy/README.md#cape-web); the user will then be ready to use the [cape2stix converter](./README.md#cape2stix-1).<br>**The assumed target for deployment is ubuntu 22LTS or similar.**
 
 
 ## cape2stix

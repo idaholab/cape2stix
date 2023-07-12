@@ -44,6 +44,10 @@ class StixLoader:
         logging.debug("Adding:")
         self.ms_sink.add(items, version=2.1)
 
+    def rm_item(self, id):
+        logging.debug("Removing:") 
+        self.ms._data.pop(id)
+
     def get_sink_data(self):
         return self.ms.sink._data
 

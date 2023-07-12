@@ -24,13 +24,18 @@ def parse_benign(benign_file):
     if os.path.exists(benign_file):
         with open(benign_file) as b:
             benign = stix2.parse(b, allow_custom=True)
-            return [obj.id for obj in benign.objects if re.match(stix_uuid5, obj.id)]
-
+            return {obj.type: obj.id for obj in benign.objects if re.match(stix_uuid5, obj.id)}
 
 def parse_malign(malign_stix, benign_list):
-    for obj in malign_stix["objects"]:
-        if obj.id in benign_list:
+    """Compares potentially malign objects to benign objects. 
+    If the objects match, the potentially malign object is benign. 
+    It is then removed from the output."""
+    print(benign_list)
+    for obj in malign_stix.objects:
+        if obj.type in benign_list and obj.id in benign_list[obj.type]: #TODO: -wb I would like to test this over just iterating over a list, but I need to change parse_benign
+            print(malign_stix.relationships(obj))
             print("todo:remove obj")
+        
 
 with open("cape2stix/tests/test_converted.json", 'r') as w:
     mal = stix2.parse(w, allow_custom=True)
