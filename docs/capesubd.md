@@ -11,8 +11,4 @@ The following documentation outlines all that is needed to start the capesubd.se
 
 ## install.sh
 - run install.sh to install capesubd: `./install.sh`
-
-## dir_to_reports.py
-- Install poetry and enter the poetry shell: `python3 -m pip install poetry && poetry shell`
-- Run [dir_to_reports.py](./dir_to_reports.py) `python3 dir_to_reports.py`
-The python script will utilize the capesubd service to continuously submit malware samples to CAPE
+- once capesubd is installed and started, it will run dir_to_reports.py based off of the data provided in config.py
