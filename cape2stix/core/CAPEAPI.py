@@ -200,8 +200,8 @@ def parse_args(args):
     parser.add_argument("--get_reports", action="store_true", default=False)
     parser.add_argument("--list", action="store_true", default=False)
     parser.add_argument("--machines", default=None)
-    parser.add_argument("--host", default="http://127.0.0.1:8888")
-    parser.add_argument("--limit", default=5000)
+    parser.add_argument("--host", default="http://127.0.0.1:8000")
+    parser.add_argument("--limit", type=int, default=5000)
     return parser.parse_args(args)
 
 

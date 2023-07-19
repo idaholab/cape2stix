@@ -63,10 +63,10 @@ The result of run.py will be an image containing CAPE and the virtual machines. 
 - Click `submit` to upload malware samples. Select 
   - [cape2stix/ama_deploy/test_samples/](../cape2stix/ama_deploy/test_samples/) contain non-malware programs that can be detonated in CAPE to replicate the effects of malware in the sandbox
   - Alternatively, users can set up automatic analysis of the samples contained under a directory with the [capesubd](capesubd.md) service
-- Once a report is made, it can be downloaded by clicking `report`
+- Once a report is made, it can be downloaded by clicking `Reports: JSON` 
   - Alternatively, users can download all the reports at once by running [cape2stix/core/CAPEAPI.py](../cape2stix/core/CAPEAPI.py). The command would be `python3 cape2stix/core/CAPEAPI.PY --get_reports --limit N` where *N* is replaced by the number of total reports the user wants to limit the transfer to.
+  - Transfered reports will be saved under `input/` in the project's root directory.
 - Once a report is saved, it can be [converted to STIX](./README.md#cape2stix-1) 
-TODO: find out where a report is saved when using capeapi.py and test that args.limit works
 
 ## Notes:
 - The CAPE web-browser may not appear to load properly if using virtualization. This can be amended by adjusting the size of the browser with Ctrl (+/-)
