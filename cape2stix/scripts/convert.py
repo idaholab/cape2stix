@@ -759,8 +759,6 @@ async def convert_file(args, sem=None):
         if sem is not None:
             sem.release()
 
-stix_uuid5 = '[a-z0-9-]+--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-5[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}'
-
 
 @timing
 async def _main():
