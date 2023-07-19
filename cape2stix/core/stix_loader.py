@@ -48,7 +48,7 @@ class StixLoader:
     def rm_item(self, id):
         try:
             self.ms._data.pop(id)
-            logging.debug(f"Removing:{id}") 
+            logging.info(f"Removing:{id}") 
         except Exception as err:
             logging.warning(f"\033[31m {err} \033[0m")
     def get_item(self, id):

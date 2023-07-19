@@ -71,7 +71,6 @@ def parse_benign(benign_dir):
         logging.exception(err)
 
 benign = parse_benign("cape2stix/scripts/benign/") 
-logging.debug(benign.keys())    
 
 class Cape2STIX:
     """
@@ -767,6 +766,11 @@ stix_uuid5 = '[a-z0-9-]+--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-5[0-9a-fA-F]{3}-[89abAB]
 async def _main():
     args = parse_args(sys.argv[1:])
 
+    log_level = {"warn": logging.WARN, "debug": logging.DEBUG, "info": logging.INFO}[
+        args.log_level
+    ]
+    logging.basicConfig(level=log_level)
+    
     if args.file:
         logging.debug(args.file)
 
