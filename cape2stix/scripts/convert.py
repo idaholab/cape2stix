@@ -32,6 +32,7 @@ from stix2 import (
     WindowsRegistryKey,
     IPv4Address,
     NetworkTraffic,
+    parse
 )
 from cape2stix.core.util import (
     genRel,
@@ -45,6 +46,31 @@ from cape2stix.core.util import (
 from cape2stix.core.stix_loader import StixLoader
 from cape2stix.core.mitreattack import AttackGen
 
+# pylint: disable=expression-not-assigned
+
+stix_uuid5 = '[a-z0-9-]+--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-5[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}'
+
+def parse_benign(benign_dir):
+    """parses a stix file and builds a list of UUIDv5s such 
+       that they can be removed from the converted file"""
+    try:
+        bundle = []
+        checkSoftware = lambda obj: (isinstance(obj, Software) and (obj.name == "KVM" or "win10" in obj.name or "ubuntu22" in obj.name))
+        for f in os.listdir(benign_dir):
+            if not f.endswith(".json"): continue #ignore non json files
+            with open(os.path.join(benign_dir, f)) as b:
+                b = parse(b, allow_custom=True)
+                [bundle.append(obj) for obj in b.objects if not checkSoftware(obj)]
+
+        pre = {obj.type: [] for obj in bundle if re.match(stix_uuid5, obj.id)} # return a dictionary of the form {object_type: List[object_id]}
+        [pre[obj.type].append(obj.id) for obj in bundle if re.match(stix_uuid5, obj.id)] # populate the List[object_id] of each object_type
+        return pre
+
+    except Exception as err:
+        logging.critical("Failed to parse files in benign/")
+        logging.exception(err)
+
+benign = parse_benign("cape2stix/scripts/benign/") 
 
 class Cape2STIX:
     """
@@ -65,17 +91,11 @@ class Cape2STIX:
         self.objects = []
         self.fspec={}
         self.fhash={}
-
+        self.whitelist=[]
+        
     def firstTimeSetup(self):
         pass
-        # sup_files = os.path.join(os.path.dirname(__file__), "sup_files")
-        # if not os.path.exists(sup_files):
-        #     os.mkdir(sup_files)
-        # local_ttp_json = os.path.join(sup_files, "enterprise-attack.json")
-        # if not os.path.exists(local_ttp_json):
-        #     downloadGithub(dst_path=local_ttp_json)
-        # self.ttp_path = local_ttp_json
-
+    
     @timing
     async def setup(self):
         if self.file is not None:
@@ -131,10 +151,35 @@ class Cape2STIX:
                     src = main_obj
                     target = obj_to_connect
                 new_rels.extend(self.create_rel_many(src, target, rel_type=rel_type))
-        self.objects.extend(objects + new_rels)
+        self.objects.extend(objects + new_rels) # ATTN: why is this list here? Does it ever matter or does self.sl take care of all that?
         for item in objects + new_rels + objs_to_connect:
             self.sl.add_item(item)
         return objs_to_connect, objects
+
+    @timing
+    def clean_benign(self, benign_list):
+        """Compares potentially malign objects to benign objects. 
+        If the objects match, the potentially malign object is benign and is removed."""
+        # todo: investigate which is faster, splitting id and removing item, or calling get(id) and using that
+
+        typeof = lambda id: id.split(sep="--", maxsplit=1)[0]
+        compare = lambda typ, id: typ in benign_list and id in benign_list[typ]
+        
+        # remove benign objects
+        objects = self.sl.get_sink_data().copy()
+        for obj_id in objects:
+            if compare(typeof(obj_id), obj_id):
+                self.sl.rm_item(obj_id)
+        
+        # remove unused relationships
+        objects = self.sl.get_sink_data().copy()
+        for obj_id in objects:
+            if typeof(obj_id) == "relationship":
+                obj = self.sl.get_item(obj_id)
+                if compare(typeof(obj.source_ref), obj.source_ref) or compare(typeof(obj.target_ref), obj.target_ref):
+                    self.sl.rm_item(obj_id)
+                    
+
 
     @timing
     async def convert(self, outpath=None):
@@ -146,7 +191,7 @@ class Cape2STIX:
                 self.fhash = {
                     "md5": h["md5"], "sha1": h["sha1"], "sha256": h["sha256"],
                     "ssdeep": h["ssdeep"], "sha3_384": h["sha3_384"],
-                    "tlsh": re.sub(r'^T1', '', h["tlsh"], count=1)
+                    "tlsh": re.sub(r'^T1', '', h["tlsh"], count=1) # NOTE: errors will occur if tlsh is unpopulated -wb 
                 }
 
             _, malware_objs = self.add_objects(self.genMalware())
@@ -199,6 +244,8 @@ class Cape2STIX:
             self.add_objects(
                 self.genNetworkTraffic(), rel_type="uses", main_obj=malware_obj
             )
+
+            self.clean_benign(benign) # parses current report and removes benign objects
 
             if outpath is not None:
                 logging.info(f"finished with {outpath}")
@@ -268,7 +315,7 @@ class Cape2STIX:
     def genMalware(self):
         "generates the primary malware object and retrieves tags"
         tags = self.getTags()
-        print(tags)
+        logging.debug(tags)
         if "sha256" in self.content["info"]["parent_sample"]:
             malware_obj = self.create_object(
                 Malware,
@@ -681,7 +728,7 @@ def parse_args(args):
     parser.add_argument(
         "--overwrite", action="store_true", help="overwrite existing files"
     )
-
+    
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("-u", action="store_true", help="run tests with base file")
 
@@ -696,7 +743,7 @@ def parse_args(args):
 
     return parser.parse_args(args)
 
-
+@timing
 async def convert_file(args, sem=None):
     if sem is not None:
         await sem.acquire()
@@ -712,15 +759,18 @@ async def convert_file(args, sem=None):
         if sem is not None:
             sem.release()
 
+stix_uuid5 = '[a-z0-9-]+--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-5[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}'
+
 
 @timing
 async def _main():
     args = parse_args(sys.argv[1:])
+
     log_level = {"warn": logging.WARN, "debug": logging.DEBUG, "info": logging.INFO}[
         args.log_level
     ]
     logging.basicConfig(level=log_level)
-
+    
     if args.file:
         logging.debug(args.file)
 

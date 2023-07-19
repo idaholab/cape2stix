@@ -159,7 +159,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-sup_files/enterprise-attack.json
+*/sup_files/enterprise-attack.json
 # *.json
 !*test_report.json
 # don't commit sphinx docs
@@ -173,3 +173,4 @@ cape2stix/todb/neo4jdata/
 .vscode/
 clustering_scripts/updated_json/just_rels.json
 *results.json
+output/

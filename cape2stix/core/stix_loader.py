@@ -13,7 +13,7 @@ class StixLoader:
     """Class to manage creation, adding to and writing out our stix data."""
 
     def __init__(self, file_path=None, allow_custom=True):
-        logging.debug("init")
+        logging.debug("init succeeded")
         self.allow_custom = allow_custom
         self.create_bundle(file_path=file_path)
 
@@ -25,6 +25,7 @@ class StixLoader:
         if file_path is not None:
             self.ms.load_from_file(file_path)
 
+    # NOTE: this looks like it is depricated and will not work
     def stix_out(self, name=None):
         if not self.stix_loader:
             return None
@@ -43,6 +44,15 @@ class StixLoader:
     def add_item(self, items):
         logging.debug("Adding:")
         self.ms_sink.add(items, version=2.1)
+
+    def rm_item(self, id):
+        try:
+            self.ms._data.pop(id)
+            logging.info(f"Removing:{id}") 
+        except Exception as err:
+            logging.warning(f"\033[31m {err} \033[0m")
+    def get_item(self, id):
+        return self.ms.get(id)
 
     def get_sink_data(self):
         return self.ms.sink._data

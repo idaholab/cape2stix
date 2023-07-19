@@ -200,30 +200,30 @@ def parse_args(args):
     parser.add_argument("--get_reports", action="store_true", default=False)
     parser.add_argument("--list", action="store_true", default=False)
     parser.add_argument("--machines", default=None)
-    parser.add_argument("--host", default="http://127.0.0.1:8888")
-
+    parser.add_argument("--host", default="http://127.0.0.1:8000")
+    parser.add_argument("--limit", type=int, default=5000)
     return parser.parse_args(args)
 
 
 if __name__ == "__main__":
     # setup object
     args = parse_args(sys.argv[1:])
-
+    
     cc = CAPEClient(args.host)
     # print(cc.submit_file('/tmp/test'))
     if args.list:
-        pprint(cc.list_tasks(limit=5000))
+        pprint(cc.list_tasks(limit=args.limit))
 
     if args.get_reports:
-        reported_tasks = cc.list_tasks(status=TaskStatus.reported, limit=5000)
+        reported_tasks = cc.list_tasks(status=TaskStatus.reported, limit=args.limit)
         for reported_task in reported_tasks:
             report = cc.get_report(reported_task["id"])
             cc.save_to_file(report, f'input/{reported_task["id"]}.json')
     if args.delete:
-        pprint(cc.delete_tasks(cc.list_tasks(limit=5000)))
+        pprint(cc.delete_tasks(cc.list_tasks(limit=args.limit)))
 
     if args.delete_pending:
-        pprint(cc.delete_tasks(cc.list_tasks(status=TaskStatus.pending, limit=5000)))
+        pprint(cc.delete_tasks(cc.list_tasks(status=TaskStatus.pending, limit=args.limit)))
 
     if args.submit:
         if os.path.exists(args.submit):

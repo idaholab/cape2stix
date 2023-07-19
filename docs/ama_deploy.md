@@ -8,9 +8,9 @@ Automated Malware Analysis Deployment is the directory containing all setup for 
 ## Initial Setup
 
 Please follow each step for initial setup
-1. Edit the number of CAPE virtual machines and their settings in [config.py](config.py) for automated VM creation
-2. Ensure there is a valid BASE.xml file and qcow2 file located under [/transfer/guest_images/*/](transfer/guest_images/)
-   - Note: if there are no valid files, contact project maintainers
+1. Edit the number of CAPE virtual machines and their settings in [ama_deploy/config.py](../ama_deploy/config.py) for automated VM creation
+2. Ensure there is a valid BASE.xml file and qcow2 file located under [ama_deploy/transfer/guest_images/*/](..ama_deploy/transfer/guest_images/)
+   - Note: if there are no valid files, contact project maintainers or make the necessary .qcow and .xml pair for the given operating system. Ex: [ubuntu22](https://blog.programster.org/create-ubuntu-22-kvm-guest-from-cloud-image)
 3. Run the command
    ```
    sudo python3 run.py [-h][--log_level {warn,debug,info}] [--verbose] [--no_vinstall]
@@ -18,13 +18,13 @@ Please follow each step for initial setup
 
 ### Command Description
 
-- [run.py](run.py): packages several build steps together for simplified deployment
+- [run.py](../ama_deploy/run.py): packages several build steps together for simplified deployment
   - run.py contains the following functionalities:
-    - runs [ubuntu.install](ubuntu.install) installs all dependencies necessary to run on ubuntu
+    - runs [ubuntu.install](../ama_deploy/ubuntu.install) installs all dependencies necessary to run on ubuntu
     - ensures bento dependencies
-    - runs [prep.py](prep.py): generates VM images based off of config.py, and template files
-    - runs [run.sh](run.sh): builds 4 stacked packer images
-    - runs [vinstall.sh](vinstall.sh)
+    - runs [prep.py](../ama_deploy/prep.py): generates VM images based off of config.py, and template files
+    - runs [run.sh](../ama_deploy/run.sh): builds 4 stacked packer images
+    - runs [vinstall.sh](../ama_deploy/vinstall.sh)
   - The usage of the script can be seen below.
     ```
     usage: run.py [-h] [--log_level {debug, info, warn}] [--verbose] [--no_vinstall] [--install_cape] [--clean]
@@ -42,6 +42,8 @@ Please follow each step for initial setup
     ```
 
 ## Using CAPE
+The result of run.py will be an image containing CAPE and the virtual machines. The two usage options are Virtual Machine Manager or Manual Install 
+
 ### Virtual Machine Manager
 
 - spawned virtual machines can be accessed through Virtual Machine Manager by connecting with ssh
@@ -50,13 +52,23 @@ Please follow each step for initial setup
   ```
   ssh-keygen
   ```
-### CAPE-Web
+
+### Manual Install
+- The image will be under builds/packer-capeextra
+	- Convert the qcow2 to a .raw and write the .raw on a system with `dd`
+	- that command might look like `dd if=/path/to/image of=/dev/sdx bs=2048M
+
+## CAPE-Web
 - Open a browser and conect to http://localhost:8000
 - Click `submit` to upload malware samples. Select 
-  - [test_samples/](test_samples/) contain non-malware programs that can be detonated in CAPE to replicate the effects of malware in the sandbox
-- Alternatively, users can set up automatic analysis of the samples contained under a directory with the [capesubd](../capesubd/README.md) service
+  - [cape2stix/ama_deploy/test_samples/](../cape2stix/ama_deploy/test_samples/) contain non-malware programs that can be detonated in CAPE to replicate the effects of malware in the sandbox
+  - Alternatively, users can set up automatic analysis of the samples contained under a directory with the [capesubd](capesubd.md) service
+- Once a report is made, it can be downloaded by clicking `Reports: JSON` 
+  - Alternatively, users can download all the reports at once by running [cape2stix/core/CAPEAPI.py](../cape2stix/core/CAPEAPI.py). The command would be `python3 cape2stix/core/CAPEAPI.PY --get_reports --limit N` where *N* is replaced by the number of total reports the user wants to limit the transfer to.
+  - Transfered reports will be saved under `input/` in the project's root directory.
+- Once a report is saved, it can be [converted to STIX](./README.md#cape2stix-1) 
 
-### Notes:
+## Notes:
 - The CAPE web-browser may not appear to load properly if using virtualization. This can be amended by adjusting the size of the browser with Ctrl (+/-)
 
 - run.sh has strange output. If a build is succeeding it will have output similar to the following:
@@ -68,5 +80,5 @@ Please follow each step for initial setup
   - This error is color coded and will wait for user input. This error ouput is the same in both run.sh and the implementation of run.sh in run.py
   - If an error will occur, it will occur relatively soon in the build process
 
-- MongoDB created some issues with gpg keys. A quick solution was to store a copy of a key in [cape.sh](bash_scripts/cape.sh). If MongoDB updates, that key may not work. The user will then need to generate a key and paste it in place.
+- MongoDB created some issues with gpg keys. A quick solution was to store a copy of a key in [cape.sh](../ama_deploy/bash_scripts/cape.sh). If MongoDB updates, that key may not work. The user will then need to generate a key and paste it in place.
 

@@ -1,0 +1,89 @@
+{
+  "type": "bundle",
+  "id": "bundle--da85f512-917d-4c8d-a172-a9c6ddb7eb8d",
+  "objects": [
+    {
+      "type": "process",
+      "id": "process--1470f89a-a8a8-5a3c-8e0e-4c90ae36ab09",
+      "cwd": "/home/ubuntu/",
+      "command_line": "ls"
+    },
+    {
+      "type": "identity",
+      "id": "identity--c1638e56-d3e7-48a0-a276-72d082d31258",
+      "name": "ubuntu",
+      "identity_class": "individual",
+      "spec_version": "2.1",
+      "created": "2023-06-29T14:58:25.542Z",
+      "modified": "2023-06-29T14:58:25.542Z"
+    },
+    {
+      "source_ref": "identity--c1638e56-d3e7-48a0-a276-72d082d31258",
+      "target_ref": "process--1470f89a-a8a8-4a3c-8e0e-4c90ae36ab09",
+      "type": "relationship",
+      "created": "2023-06-29T14:58:34.693Z",
+      "modified": "2023-06-29T14:58:34.693Z",
+      "id": "relationship--5d8d68e9-8448-4c30-9b60-d14a25dab8f1",
+      "relationship_type": "located-at"
+    },
+    {
+      "id": "malware--edc40d4b-de9b-4a38-bcf8-07121687097d",
+      "type": "malware",
+      "name": "bad",
+      "is_family": false,
+      "spec_version": "2.1",
+      "created": "2023-06-29T14:58:42.134Z",
+      "modified": "2023-06-29T14:58:42.134Z"
+    },
+    {
+      "type": "software",
+      "spec_version": "2.1",
+      "id": "software--7973053f-bfb7-51a4-acef-57b570301347",
+      "name": "win10_3"
+    },
+    {
+      "type": "software",
+      "spec_version": "2.1",
+      "id": "software--6b0a478b-c366-563e-a38f-c97f3ef07500",
+      "name": "KVM"
+    },
+    {
+      "type": "malware-analysis",
+      "spec_version": "2.1",
+      "id": "malware-analysis--092fc757-f33e-4d63-ba1a-0190fb5f04cc",
+      "created": "2023-07-11T22:14:52.778437Z",
+      "modified": "2023-07-11T22:14:52.778437Z",
+      "product": "2.2-CAPE",
+      "version": "2.2-CAPE",
+      "host_vm_ref": "software--6b0a478b-c366-563e-a38f-c97f3ef07500",
+      "operating_system_ref": "software--7973053f-bfb7-51a4-acef-57b570301347",
+      "modules": [
+        "exe"
+      ],
+      "submitted": "2022-04-26T19:35:41Z",
+      "analysis_started": "2022-04-26T19:35:41Z",
+      "analysis_ended": "2022-04-26T19:39:19Z",
+      "result": "malware"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--66f9149c-e7a2-5eea-8e0a-f75137321ff1",
+      "created": "2023-07-11T22:14:52.778937Z",
+      "modified": "2023-07-11T22:14:52.778937Z",
+      "relationship_type": "related-to",
+      "source_ref": "software--7973053f-bfb7-51a4-acef-57b570301347",
+      "target_ref": "software--6b0a478b-c366-563e-a38f-c97f3ef07500"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--5bc0c1ea-8262-5dd0-b373-174bef200b5c",
+      "created": "2023-07-11T22:14:52.779139Z",
+      "modified": "2023-07-11T22:14:52.779139Z",
+      "relationship_type": "dynamic-analysis-of",
+      "source_ref": "malware-analysis--092fc757-f33e-4d63-ba1a-0190fb5f04cc",
+      "target_ref": "software--7973053f-bfb7-51a4-acef-57b570301347"
+    }
+  ]
+}
