@@ -139,8 +139,8 @@ jobs:
           cd auto_docs
           poetry run sphinx-apidoc -o capesubd ../capesubd  
           poetry run sphinx-apidoc -o cape2stix ../cape2stix 
-          poetry run make html
-          mv _build/html/ ../public/
+          poetry run sphinx-build -b html . _build
+          mv _build/ ../public/
     #------------------------archive
       - name: archive
         uses: actions/upload-artifact@v3
