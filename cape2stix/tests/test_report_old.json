@@ -1,0 +1,1080 @@
+{
+    "statistics": {
+        "processing": [
+            {
+                "name": "CAPE",
+                "time": 0.475
+            }
+        ],
+        "signatures": [
+            {
+                "name": "infostealer_browser",
+                "time": 0.001
+            }
+        ],
+        "reporting": [
+            {
+                "name": "BinGraph",
+                "time": 0.0
+            }
+        ]
+    },
+    "decompression": [],
+    "CAPE": {
+        "payloads": [],
+        "configs": []
+    },
+    "info": {
+        "version": "2.2-CAPE",
+        "started": "2022-04-26 19:35:41",
+        "ended": "2022-04-26 19:39:19",
+        "duration": 218,
+        "id": 2003,
+        "category": "file",
+        "custom": "",
+        "machine": {
+            "id": 210,
+            "status": "stopping",
+            "name": "win10_3",
+            "label": "win10_3",
+            "manager": "KVM",
+            "started_on": "2022-04-26 19:35:41",
+            "shutdown_on": "2022-04-26 19:39:19"
+        },
+        "package": "exe",
+        "timeout": true,
+        "shrike_url": null,
+        "shrike_refer": null,
+        "shrike_msg": null,
+        "shrike_sid": null,
+        "parent_id": null,
+        "tlp": null,
+        "parent_sample": {},
+        "options": {},
+        "source_url": null,
+        "route": "false",
+        "user_id": 0
+    },
+    "behavior": {
+        "processes": [
+            {
+                "process_id": 2512,
+                "process_name": "08684156aa00d8d0b1d0.exe",
+                "parent_id": 556,
+                "module_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\08684156aa00d8d0b1d0.exe",
+                "first_seen": "2022-04-26 16:47:20,011",
+                "calls": [
+                    {
+                        "timestamp": "2022-04-26 16:47:20,058",
+                        "thread_id": "608",
+                        "caller": "0x74dbeeb3",
+                        "parentcaller": "0x74dbe690",
+                        "category": "filesystem",
+                        "api": "NtOpenFile",
+                        "status": true,
+                        "return": "0x00000000",
+                        "arguments": [
+                            {
+                                "name": "FileHandle",
+                                "value": "0x00000258"
+                            },
+                            {
+                                "name": "DesiredAccess",
+                                "value": "0x001200a9",
+                                "pretty_value": "FILE_GENERIC_READ|FILE_GENERIC_EXECUTE"
+                            },
+                            {
+                                "name": "FileName",
+                                "value": "C:\\Windows\\WindowsShell.Manifest"
+                            },
+                            {
+                                "name": "ShareAccess",
+                                "value": "5",
+                                "pretty_value": "FILE_SHARE_READ|FILE_SHARE_DELETE"
+                            }
+                        ],
+                        "repeated": 0,
+                        "id": 0
+                    },
+                    {
+                        "timestamp": "2022-04-26 16:47:20,058",
+                        "thread_id": "608",
+                        "caller": "0x74dbf379",
+                        "parentcaller": "0x74dbe690",
+                        "category": "process",
+                        "api": "NtCreateSection",
+                        "status": true,
+                        "return": "0x00000000",
+                        "arguments": [
+                            {
+                                "name": "SectionHandle",
+                                "value": "0x0000025c"
+                            },
+                            {
+                                "name": "DesiredAccess",
+                                "value": "0x00000004",
+                                "pretty_value": "SECTION_MAP_READ"
+                            },
+                            {
+                                "name": "ObjectAttributes",
+                                "value": ""
+                            },
+                            {
+                                "name": "FileHandle",
+                                "value": "0x00000258"
+                            }
+                        ],
+                        "repeated": 0,
+                        "id": 1
+                    },
+                    {
+                        "timestamp": "2022-04-26 16:47:20,058",
+                        "thread_id": "608",
+                        "caller": "0x74dbf3af",
+                        "parentcaller": "0x74dbe690",
+                        "category": "process",
+                        "api": "NtMapViewOfSection",
+                        "status": true,
+                        "return": "0x00000000",
+                        "arguments": [
+                            {
+                                "name": "SectionHandle",
+                                "value": "0x0000025c"
+                            },
+                            {
+                                "name": "ProcessHandle",
+                                "value": "0xffffffff"
+                            },
+                            {
+                                "name": "BaseAddress",
+                                "value": "0x02140000"
+                            },
+                            {
+                                "name": "SectionOffset",
+                                "value": "0x00000000"
+                            },
+                            {
+                                "name": "ViewSize",
+                                "value": "0x00001000"
+                            },
+                            {
+                                "name": "Win32Protect",
+                                "value": "0x00000002",
+                                "pretty_value": "PAGE_READONLY"
+                            },
+                            {
+                                "name": "StackPivoted",
+                                "value": "no"
+                            }
+                        ],
+                        "repeated": 0,
+                        "id": 2
+                    },
+                    {
+                        "timestamp": "2022-04-26 16:47:20,058",
+                        "thread_id": "608",
+                        "caller": "0x74dbfc44",
+                        "parentcaller": "0x74dbfd12",
+                        "category": "registry",
+                        "api": "NtOpenKey",
+                        "status": false,
+                        "return": "0xc0000034",
+                        "pretty_return": "OBJECT_NAME_NOT_FOUND",
+                        "arguments": [
+                            {
+                                "name": "KeyHandle",
+                                "value": "0x00000000"
+                            },
+                            {
+                                "name": "DesiredAccess",
+                                "value": "0x00020019",
+                                "pretty_value": "KEY_READ"
+                            },
+                            {
+                                "name": "ObjectAttributesHandle",
+                                "value": "0x00000000"
+                            },
+                            {
+                                "name": "ObjectAttributesName",
+                                "value": "\\Registry\\MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\SideBySide"
+                            },
+                            {
+                                "name": "ObjectAttributes",
+                                "value": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\SideBySide"
+                            }
+                        ],
+                        "repeated": 0,
+                        "id": 3
+                    },
+                    {
+                        "timestamp": "2022-04-26 16:47:20,074",
+                        "thread_id": "660",
+                        "caller": "0x77956416",
+                        "parentcaller": "0x7792ad3f",
+                        "category": "threading",
+                        "api": "NtQueryInformationThread",
+                        "status": true,
+                        "return": "0x00000000",
+                        "arguments": [
+                            {
+                                "name": "ThreadHandle",
+                                "value": "0xfffffffe"
+                            },
+                            {
+                                "name": "ThreadInformationClass",
+                                "value": "12"
+                            },
+                            {
+                                "name": "ThreadInformation",
+                                "value": "\\x00\\x00\\x00\\x00"
+                            },
+                            {
+                                "name": "ThreadId",
+                                "value": "660"
+                            }
+                        ],
+                        "repeated": 0,
+                        "id": 4
+                    },
+                    {
+                        "timestamp": "2022-04-26 16:47:20,074",
+                        "thread_id": "2424",
+                        "caller": "0x77956416",
+                        "parentcaller": "0x7792ad3f",
+                        "category": "threading",
+                        "api": "NtQueryInformationThread",
+                        "status": true,
+                        "return": "0x00000000",
+                        "arguments": [
+                            {
+                                "name": "ThreadHandle",
+                                "value": "0xfffffffe"
+                            },
+                            {
+                                "name": "ThreadInformationClass",
+                                "value": "12"
+                            },
+                            {
+                                "name": "ThreadInformation",
+                                "value": "\\x00\\x00\\x00\\x00"
+                            },
+                            {
+                                "name": "ThreadId",
+                                "value": "2424"
+                            }
+                        ],
+                        "repeated": 0,
+                        "id": 5
+                    },
+                    {
+                        "timestamp": "2022-04-26 16:47:22,558",
+                        "thread_id": "316",
+                        "caller": "0x77948804",
+                        "parentcaller": "0x00000000",
+                        "category": "__notification__",
+                        "api": "__anomaly__",
+                        "status": true,
+                        "return": "0x00000000",
+                        "arguments": [
+                            {
+                                "name": "ThreadIdentifier",
+                                "value": "316"
+                            },
+                            {
+                                "name": "Subcategory",
+                                "value": "unhook"
+                            },
+                            {
+                                "name": "FunctionName",
+                                "value": "PStoreCreateInstance"
+                            },
+                            {
+                                "name": "FunctionAddress",
+                                "value": "0x731412c0"
+                            },
+                            {
+                                "name": "UnhookType",
+                                "value": "modification"
+                            },
+                            {
+                                "name": "OriginalBytes",
+                                "value": "8B FF FF 25 28 C9 60 02 85 C0 74 03 83 20 00 B8 "
+                            },
+                            {
+                                "name": "NewBytes",
+                                "value": "43 27 00 00 10 23 14 73 47 27 00 00 24 23 14 73 "
+                            }
+                        ],
+                        "repeated": 0,
+                        "id": 6
+                    },
+                    {
+                        "timestamp": "2022-04-26 16:47:51,324",
+                        "thread_id": "2204",
+                        "caller": "0x77698554",
+                        "parentcaller": "0x771d2bc9",
+                        "category": "system",
+                        "api": "NtDuplicateObject",
+                        "status": true,
+                        "return": "0x00000000",
+                        "arguments": [
+                            {
+                                "name": "SourceProcessHandle",
+                                "value": "0xffffffff"
+                            },
+                            {
+                                "name": "SourceHandle",
+                                "value": "0xfffffffe"
+                            },
+                            {
+                                "name": "TargetProcessHandle",
+                                "value": "0xffffffff"
+                            },
+                            {
+                                "name": "TargetHandle",
+                                "value": "0x00000364"
+                            },
+                            {
+                                "name": "Options",
+                                "value": "0x00000002"
+                            }
+                        ],
+                        "repeated": 0,
+                        "id": 7
+                    },
+                    {
+                        "timestamp": "2022-04-26 16:48:21,324",
+                        "thread_id": "3820",
+                        "caller": "0x77698554",
+                        "parentcaller": "0x771d2bc9",
+                        "category": "system",
+                        "api": "NtDuplicateObject",
+                        "status": true,
+                        "return": "0x00000000",
+                        "arguments": [
+                            {
+                                "name": "SourceProcessHandle",
+                                "value": "0xffffffff"
+                            },
+                            {
+                                "name": "SourceHandle",
+                                "value": "0xfffffffe"
+                            },
+                            {
+                                "name": "TargetProcessHandle",
+                                "value": "0xffffffff"
+                            },
+                            {
+                                "name": "TargetHandle",
+                                "value": "0x00000370"
+                            },
+                            {
+                                "name": "Options",
+                                "value": "0x00000002"
+                            }
+                        ],
+                        "repeated": 0,
+                        "id": 8
+                    }
+                ],
+                "threads": [
+                    "608",
+                    "660",
+                    "2424",
+                    "316",
+                    "2204",
+                    "3820"
+                ],
+                "environ": {
+                    "UserName": "Administrator",
+                    "ComputerName": "EARYWEAEXFLWYN",
+                    "WindowsPath": "C:\\Windows",
+                    "TempPath": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+                    "CommandLine": "\"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\08684156aa00d8d0b1d0.exe\" ",
+                    "RegisteredOwner": "",
+                    "RegisteredOrganization": "",
+                    "ProductName": "",
+                    "SystemVolumeSerialNumber": "ea83-523a",
+                    "SystemVolumeGUID": "c1611bf3-0000-0000-0000-d01200000000",
+                    "MachineGUID": ""
+                }
+            }
+        ],
+        "anomaly": [],
+        "processtree": [
+            {
+                "name": "08684156aa00d8d0b1d0.exe",
+                "pid": 2512,
+                "parent_id": 556,
+                "module_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\08684156aa00d8d0b1d0.exe",
+                "children": [],
+                "threads": [
+                    "608",
+                    "660",
+                    "2424",
+                    "316",
+                    "2204",
+                    "3820"
+                ],
+                "environ": {
+                    "UserName": "Administrator",
+                    "ComputerName": "EARYWEAEXFLWYN",
+                    "WindowsPath": "C:\\Windows",
+                    "TempPath": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+                    "CommandLine": "\"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\08684156aa00d8d0b1d0.exe\" ",
+                    "RegisteredOwner": "",
+                    "RegisteredOrganization": "",
+                    "ProductName": "",
+                    "SystemVolumeSerialNumber": "ea83-523a",
+                    "SystemVolumeGUID": "c1611bf3-0000-0000-0000-d01200000000",
+                    "MachineGUID": ""
+                }
+            }
+        ],
+        "summary": {
+            "files": [
+                "C:\\Windows\\Fonts\\staticcache.dat",
+                "C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Login Data"
+            ],
+            "read_files": [
+                "C:\\Windows\\Fonts\\staticcache.dat", 
+                "C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Login Data"
+            ],
+            "write_files": [
+                "C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Login Data"
+            ],
+            "delete_files": [],
+            "keys": [
+                "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\DataStore_V1.0\\DataFilePath", 
+                "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\5.0\\Cache\\History\\CachePrefix"
+            ],
+            "read_keys": [
+                "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\DataStore_V1.0\\DataFilePath"
+            ],
+            "write_keys": [
+                "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\5.0\\Cache\\History\\CachePrefix"
+            ],
+            "delete_keys": [],
+            "executed_commands": [],
+            "resolved_apis": [],
+            "mutexes": [
+                "Local\\SM0:2512:64:WilError_01"
+            ],
+            "created_services": [],
+            "started_services": []
+        },
+        "enhanced": [
+            {
+                "event": "load",
+                "object": "library",
+                "timestamp": "2022-04-26 16:47:20,058",
+                "eid": 1,
+                "data": {
+                    "file": "C:\\Windows\\System32\\shell32.dll",
+                    "pathtofile": null,
+                    "moduleaddress": "0x00000000"
+                }
+            },
+            {
+                "event": "read",
+                "object": "registry",
+                "timestamp": "2022-04-26 16:47:20,121",
+                "eid": 2,
+                "data": {
+                    "regkey": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\DataStore_V1.0\\DataFilePath",
+                    "content": "C:\\Windows\\Fonts\\staticcache.dat"
+                }
+            },
+            {
+                "event": "read",
+                "object": "file",
+                "timestamp": "2022-04-26 16:47:21,996",
+                "eid": 3,
+                "data": {
+                    "file": "C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Login Data"
+                }
+            }
+        ],
+        "encryptedbuffers": []
+    },
+    "curtain": null,
+    "debug": {
+        "log": "2022-04-21 17:38:01,461 [root] INFO: Date set to: 20220426T17:47:11, timeout set to: 200\n2022-04-26 17:47:11,011 [root] DEBUG: Starting analyzer from: C:\\tmp90s6rq7l\n2022-04-26 17:47:11,011 [root] DEBUG: Storing results at: C:\\MnfCCH\n2022-04-26 17:47:11,011 [root] DEBUG: Pipe server name: \\\\.\\PIPE\\gKxOZe\n2022-04-26 17:47:11,011 [root] DEBUG: Python path: C:\\Python3\n2022-04-26 17:47:11,011 [root] INFO: Analysis package \"exe\" has been specified\n2022-04-26 17:47:11,011 [root] DEBUG: Importing analysis package \"exe\"...\n2022-04-26 17:47:11,011 [root] DEBUG: Initializing analysis package \"exe\"...\n2022-04-26 17:47:11,011 [root] INFO: Analyzer: Package modules.packages.exe does not specify a DLL option\n2022-04-26 17:47:11,011 [root] INFO: Analyzer: Package modules.packages.exe does not specify a DLL_64 option\n2022-04-26 17:47:11,011 [root] INFO: Analyzer: Package modules.packages.exe does not specify a loader option\n2022-04-26 17:47:11,011 [root] INFO: Analyzer: Package modules.packages.exe does not specify a loader_64 option\n2022-04-26 17:47:11,073 [root] DEBUG: Importing auxiliary module \"modules.auxiliary.browser\"...\n2022-04-26 17:47:11,089 [root] DEBUG: Importing auxiliary module \"modules.auxiliary.curtain\"...\n2022-04-26 17:47:11,104 [root] DEBUG: Importing auxiliary module \"modules.auxiliary.digisig\"...\n2022-04-26 17:47:11,120 [root] DEBUG: Importing auxiliary module \"modules.auxiliary.disguise\"...\n2022-04-26 17:47:11,136 [root] DEBUG: Importing auxiliary module \"modules.auxiliary.evtx\"...\n2022-04-26 17:47:11,151 [root] DEBUG: Importing auxiliary module \"modules.auxiliary.human\"...\n2022-04-26 17:47:11,151 [root] DEBUG: Importing auxiliary module \"modules.auxiliary.procmon\"...\n2022-04-26 17:47:11,151 [root] DEBUG: Importing auxiliary module \"modules.auxiliary.screenshots\"...\n2022-04-26 17:47:11,151 [lib.api.screenshot] DEBUG: Importing 'PIL.ImageChops'\n2022-04-26 17:47:11,198 [lib.api.screenshot] DEBUG: Importing 'PIL.ImageGrab'\n2022-04-26 17:47:11,198 [lib.api.screenshot] DEBUG: Importing 'PIL.ImageDraw'\n2022-04-26 17:47:11,229 [root] DEBUG: Importing auxiliary module \"modules.auxiliary.sysmon\"...\n2022-04-26 17:47:11,229 [root] DEBUG: Importing auxiliary module \"modules.auxiliary.tlsdump\"...\n2022-04-26 17:47:11,229 [root] DEBUG: Importing auxiliary module \"modules.auxiliary.usage\"...\n2022-04-26 17:47:11,229 [root] DEBUG: Initializing auxiliary module \"Browser\"...\n2022-04-26 17:47:11,245 [root] DEBUG: Started auxiliary module Browser\n2022-04-26 17:47:11,245 [root] DEBUG: Initializing auxiliary module \"Curtain\"...\n2022-04-26 17:47:11,245 [root] DEBUG: Started auxiliary module Curtain\n2022-04-26 17:47:11,245 [root] DEBUG: Initializing auxiliary module \"DigiSig\"...\n2022-04-26 17:47:11,245 [modules.auxiliary.digisig] DEBUG: Checking for a digital signature\n2022-04-26 17:47:11,542 [modules.auxiliary.digisig] DEBUG: File is not signed\n2022-04-26 17:47:11,558 [modules.auxiliary.digisig] INFO: Uploading signature results to aux/DigiSig.json\n2022-04-26 17:47:11,573 [root] DEBUG: Started auxiliary module DigiSig\n2022-04-26 17:47:11,573 [root] DEBUG: Initializing auxiliary module \"Disguise\"...\n2022-04-26 17:47:11,573 [modules.auxiliary.disguise] INFO: Disguising GUID to 9c389045-c515-4900-8d02-e31a2e138c64\n2022-04-26 17:47:11,573 [root] DEBUG: Started auxiliary module Disguise\n2022-04-26 17:47:11,573 [root] DEBUG: Initializing auxiliary module \"Evtx\"...\n2022-04-26 17:47:11,573 [root] DEBUG: Started auxiliary module Evtx\n2022-04-26 17:47:11,573 [root] DEBUG: Initializing auxiliary module \"Human\"...\n2022-04-26 17:47:11,573 [root] DEBUG: Started auxiliary module Human\n2022-04-26 17:47:11,573 [root] DEBUG: Initializing auxiliary module \"Procmon\"...\n2022-04-26 17:47:11,573 [root] DEBUG: Started auxiliary module Procmon\n2022-04-26 17:47:11,573 [root] DEBUG: Initializing auxiliary module \"Screenshots\"...\n2022-04-26 17:47:11,589 [root] DEBUG: Started auxiliary module Screenshots\n2022-04-26 17:47:11,589 [root] DEBUG: Initializing auxiliary module \"Sysmon\"...\n2022-04-26 17:47:11,589 [root] DEBUG: Started auxiliary module Sysmon\n2022-04-26 17:47:11,589 [root] DEBUG: Initializing auxiliary module \"TLSDumpMasterSecrets\"...\n2022-04-26 17:47:11,589 [modules.auxiliary.tlsdump] INFO: lsass.exe found, pid 600\n2022-04-26 17:47:11,683 [lib.api.process] INFO: Monitor config for process 600: C:\\tmp90s6rq7l\\dll\\600.ini\n2022-04-26 17:47:14,698 [lib.api.process] INFO: Option 'tlsdump' with value '1' sent to monitor\n2022-04-26 17:47:14,698 [lib.api.process] INFO: 64-bit DLL to inject is C:\\tmp90s6rq7l\\dll\\rVtJImj.dll, loader C:\\tmp90s6rq7l\\bin\\nsjFfPEw.exe\n2022-04-26 17:47:14,729 [root] DEBUG: Loader: Injecting process 600 with C:\\tmp90s6rq7l\\dll\\rVtJImj.dll.\n2022-04-26 17:47:14,776 [root] DEBUG: Python path set to 'C:\\Python3'.\n2022-04-26 17:47:14,776 [root] DEBUG: TLS secret dump mode enabled.\n2022-04-26 17:47:14,776 [root] INFO: Disabling sleep skipping.\n2022-04-26 17:47:14,776 [root] DEBUG: Monitor initialised: 64-bit capemon loaded in process 600 at 0x00007FFDA3DD0000, thread 3532, image base 0x00007FF666310000, stack from 0x000000C51FE74000-0x000000C51FE80000\n2022-04-26 17:47:14,776 [root] DEBUG: Commandline: C:\\Windows\\system32\\lsass.exe\n2022-04-26 17:47:14,792 [root] DEBUG: InjectDllViaThread: Successfully injected Dll into process via RtlCreateUserThread.\n2022-04-26 17:47:14,792 [root] DEBUG: Successfully injected DLL C:\\tmp90s6rq7l\\dll\\rVtJImj.dll.\n2022-04-26 17:47:14,792 [lib.api.process] INFO: Injected into suspended 64-bit process with pid 600\n2022-04-26 17:47:14,792 [root] DEBUG: Started auxiliary module TLSDumpMasterSecrets\n2022-04-26 17:47:14,792 [root] DEBUG: Initializing auxiliary module \"Usage\"...\n2022-04-26 17:47:14,792 [root] DEBUG: Started auxiliary module Usage\n2022-04-26 17:47:17,667 [root] INFO: Restarting WMI Service\n2022-04-26 17:47:17,745 [lib.api.process] INFO: Successfully executed process from path \"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\08684156aa00d8d0b1d0.exe\" with arguments \"\" with pid 2512\n2022-04-26 17:47:17,745 [lib.api.process] INFO: Monitor config for process 2512: C:\\tmp90s6rq7l\\dll\\2512.ini\n2022-04-26 17:47:17,745 [lib.api.process] INFO: 32-bit DLL to inject is C:\\tmp90s6rq7l\\dll\\muDdBicH.dll, loader C:\\tmp90s6rq7l\\bin\\VUHmSHE.exe\n2022-04-26 17:47:17,808 [root] DEBUG: Loader: Injecting process 2512 (thread 608) with C:\\tmp90s6rq7l\\dll\\muDdBicH.dll.\n2022-04-26 17:47:17,808 [root] DEBUG: InjectDllViaIAT: Successfully patched IAT.\n2022-04-26 17:47:17,808 [root] DEBUG: Successfully injected DLL C:\\tmp90s6rq7l\\dll\\muDdBicH.dll.\n2022-04-26 17:47:17,808 [lib.api.process] INFO: Injected into suspended 32-bit process with pid 2512\n2022-04-26 17:47:19,823 [lib.api.process] INFO: Successfully resumed process with pid 2512\n2022-04-26 17:47:19,995 [root] DEBUG: Python path set to 'C:\\Python3'.\n2022-04-26 17:47:20,011 [root] DEBUG: Dropped file limit defaulting to 100.\n2022-04-26 17:47:20,011 [root] DEBUG: Initialising Yara...\n2022-04-26 17:47:20,011 [root] DEBUG: YaraInit: Compiled 16 rule files\n2022-04-26 17:47:20,011 [root] DEBUG: YaraInit: Compiled rules saved to file C:\\tmp90s6rq7l\\data\\yara\\capemon.yac\n2022-04-26 17:47:20,011 [root] DEBUG: InternalYaraScan: Scanning 0x778F0000, size 0x18df87\n2022-04-26 17:47:20,026 [root] DEBUG: AmsiDumper initialised.\n2022-04-26 17:47:20,042 [root] DEBUG: Monitor initialised: 32-bit capemon loaded in process 2512 at 0x721e0000, thread 608, image base 0x400000, stack from 0x196000-0x1a0000\n2022-04-26 17:47:20,042 [root] DEBUG: Commandline: \"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\08684156aa00d8d0b1d0.exe\"\n2022-04-26 17:47:20,058 [root] DEBUG: RestoreHeaders: Restored original import table.\n2022-04-26 17:47:20,058 [root] INFO: Loaded monitor into process with pid 2512\n2022-04-26 17:47:20,058 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x25c and local view 0x02140000 to global list.\n2022-04-26 17:47:20,058 [root] DEBUG: caller_dispatch: Adding region at 0x00400000 to caller regions list (ntdll::memcpy returns to 0x004467F0, thread 608).\n2022-04-26 17:47:20,058 [root] DEBUG: YaraScan: Scanning 0x00400000, size 0x7b5ff\n2022-04-26 17:47:20,058 [root] DEBUG: caller_dispatch: Dump of calling region at 0x00400000 skipped (ntdll::memcpy returns to 0x004467F0 mapped as \\Device\\HarddiskVolume2\\Users\\ADMINI~1\\AppData\\Local\\Temp\\08684156aa00d8d0b1d0.exe).\n2022-04-26 17:47:20,058 [root] DEBUG: DLL unloaded from 0x740F0000.\n2022-04-26 17:47:20,073 [root] DEBUG: DLL loaded at 0x74060000: C:\\Windows\\system32\\uxtheme (0x78000 bytes).\n2022-04-26 17:47:20,089 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x1b8 and local view 0x75CB0000 to global list.\n2022-04-26 17:47:20,089 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x250 and local view 0x77500000 to global list.\n2022-04-26 17:47:20,089 [root] DEBUG: DLL loaded at 0x77500000: C:\\Windows\\System32\\OLEAUT32 (0x96000 bytes).\n2022-04-26 17:47:20,089 [root] DEBUG: DLL loaded at 0x75CB0000: C:\\Windows\\System32\\MSCTF (0x146000 bytes).\n2022-04-26 17:47:20,104 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x254 and local view 0x006E0000 to global list.\n2022-04-26 17:47:20,104 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0xa4 and local view 0x00710000 to global list.\n2022-04-26 17:47:20,104 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x006E0000 for section view with handle 0x250.\n2022-04-26 17:47:20,104 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0xa8 and local view 0x73660000 to global list.\n2022-04-26 17:47:20,120 [root] DEBUG: DLL loaded at 0x73660000: C:\\Windows\\system32\\dwmapi (0x23000 bytes).\n2022-04-26 17:47:20,120 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x26c and local view 0x04C10000 to global list.\n2022-04-26 17:47:20,136 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x007D0000 for section view with handle 0xa8.\n2022-04-26 17:47:20,136 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x278 and local view 0x05D50000 to global list.\n2022-04-26 17:47:20,151 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x284 and local view 0x00870000 to global list.\n2022-04-26 17:47:20,167 [root] DEBUG: api-rate-cap: memcpy hook disabled due to rate.\n2022-04-26 17:47:20,214 [root] INFO: Disabling sleep skipping.\n2022-04-26 17:47:20,229 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x290 and local view 0x008B0000 to global list.\n2022-04-26 17:47:21,101 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 528, handle 0x2ac.\n2022-04-26 17:47:21,108 [root] DEBUG: DLL loaded at 0x74D80000: C:\\Windows\\System32\\psapi (0x6000 bytes).\n2022-04-26 17:47:21,112 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 600, handle 0x2ac.\n2022-04-26 17:47:21,112 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 692, handle 0x2ac.\n2022-04-26 17:47:21,112 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 700, handle 0x2ac.\n2022-04-26 17:47:21,112 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 708, handle 0x2ac.\n2022-04-26 17:47:21,112 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 804, handle 0x2ac.\n2022-04-26 17:47:21,112 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 916, handle 0x2ac.\n2022-04-26 17:47:21,112 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 984, handle 0x2ac.\n2022-04-26 17:47:21,117 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 272, handle 0x2ac.\n2022-04-26 17:47:21,117 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 8, handle 0x2ac.\n2022-04-26 17:47:21,117 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 380, handle 0x2ac.\n2022-04-26 17:47:21,117 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 344, handle 0x2ac.\n2022-04-26 17:47:21,120 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 1196, handle 0x2ac.\n2022-04-26 17:47:21,120 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 1240, handle 0x2ac.\n2022-04-26 17:47:21,120 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 1300, handle 0x2ac.\n2022-04-26 17:47:21,120 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 1312, handle 0x2ac.\n2022-04-26 17:47:21,120 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 1520, handle 0x2ac.\n2022-04-26 17:47:21,120 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 1740, handle 0x2ac.\n2022-04-26 17:47:21,120 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 1788, handle 0x2ac.\n2022-04-26 17:47:21,125 [root] DEBUG: OpenProcessHandler: Image base for process 1788 (handle 0x2ac): 0x00CC0000.\n2022-04-26 17:47:21,125 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 1812, handle 0x2ac.\n2022-04-26 17:47:21,125 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 1848, handle 0x2ac.\n2022-04-26 17:47:21,125 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 1308, handle 0x2ac.\n2022-04-26 17:47:21,125 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 1648, handle 0x2ac.\n2022-04-26 17:47:21,125 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 1832, handle 0x2ac.\n2022-04-26 17:47:21,125 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 2100, handle 0x2ac.\n2022-04-26 17:47:21,125 [root] DEBUG: OpenProcessHandler: Image base for process 2100 (handle 0x2ac): 0x00290000.\n2022-04-26 17:47:21,125 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 2284, handle 0x2ac.\n2022-04-26 17:47:21,125 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 2536, handle 0x2ac.\n2022-04-26 17:47:21,125 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 2936, handle 0x2ac.\n2022-04-26 17:47:21,125 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 2960, handle 0x2ac.\n2022-04-26 17:47:21,125 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 364, handle 0x2ac.\n2022-04-26 17:47:21,125 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 3380, handle 0x2ac.\n2022-04-26 17:47:21,125 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 3520, handle 0x2ac.\n2022-04-26 17:47:21,136 [root] DEBUG: OpenProcessHandler: Image base for process 3520 (handle 0x2ac): 0x01190000.\n2022-04-26 17:47:21,136 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 2416, handle 0x2ac.\n2022-04-26 17:47:21,136 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 3288, handle 0x2ac.\n2022-04-26 17:47:21,136 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 300, handle 0x2ac.\n2022-04-26 17:47:21,136 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 1332, handle 0x2ac.\n2022-04-26 17:47:21,136 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 3764, handle 0x2ac.\n2022-04-26 17:47:21,136 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 2692, handle 0x2ac.\n2022-04-26 17:47:21,136 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 4064, handle 0x2ac.\n2022-04-26 17:47:21,183 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 2132, handle 0x2ac.\n2022-04-26 17:47:21,198 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 2864, handle 0x2ac.\n2022-04-26 17:47:21,198 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 2908, handle 0x2ac.\n2022-04-26 17:47:21,198 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 2252, handle 0x2ac.\n2022-04-26 17:47:21,198 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 2760, handle 0x2ac.\n2022-04-26 17:47:21,214 [root] DEBUG: DLL unloaded from 0x74D80000.\n2022-04-26 17:47:21,229 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x2ac and local view 0x729D0000 to global list.\n2022-04-26 17:47:21,229 [root] DEBUG: DLL loaded at 0x729D0000: C:\\Windows\\SYSTEM32\\iertutil (0x211000 bytes).\n2022-04-26 17:47:21,245 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x2c4 and local view 0x008C0000 to global list.\n2022-04-26 17:47:21,261 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x2d4 and local view 0x008D0000 to global list.\n2022-04-26 17:47:21,308 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x2dc and local view 0x73A90000 to global list.\n2022-04-26 17:47:21,308 [root] DEBUG: DLL loaded at 0x73A90000: C:\\Windows\\SYSTEM32\\CRYPTSP (0x13000 bytes).\n2022-04-26 17:47:21,308 [root] DEBUG: DLL loaded at 0x73A60000: C:\\Windows\\system32\\rsaenh (0x2f000 bytes).\n2022-04-26 17:47:21,323 [root] DEBUG: DLL unloaded from 0x77870000.\n2022-04-26 17:47:21,323 [root] DEBUG: DLL loaded at 0x73140000: C:\\Windows\\system32\\pstorec (0x8000 bytes).\n2022-04-26 17:47:21,323 [root] DEBUG: DLL unloaded from 0x73140000.\n2022-04-26 17:47:21,354 [root] DEBUG: DLL loaded at 0x72510000: C:\\Windows\\SYSTEM32\\wintypes (0xd1000 bytes).\n2022-04-26 17:47:21,354 [root] DEBUG: DLL loaded at 0x725F0000: C:\\Windows\\system32\\vaultcli (0x34000 bytes).\n2022-04-26 17:47:21,370 [root] DEBUG: DLL loaded at 0x00007FFDB5910000: C:\\Windows\\System32\\vaultsvc (0x59000 bytes).\n2022-04-26 17:47:21,917 [root] DEBUG: DLL loaded at 0x74D80000: C:\\Windows\\System32\\psapi (0x6000 bytes).\n2022-04-26 17:47:21,917 [root] DEBUG: OpenProcessHandler: Injection info created for Pid 2888, handle 0x308.\n2022-04-26 17:47:21,917 [root] DEBUG: DLL unloaded from 0x74D80000.\n2022-04-26 17:47:21,964 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x2d0 and local view 0x73F60000 to global list.\n2022-04-26 17:47:21,964 [root] DEBUG: DLL loaded at 0x73F60000: C:\\Windows\\SYSTEM32\\DPAPI (0x8000 bytes).\n2022-04-26 17:47:21,979 [root] INFO: Added new file to list with pid None and path C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Web Data\n2022-04-26 17:47:22,026 [root] INFO: Added new file to list with pid None and path C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Login Data\n2022-04-26 17:47:22,042 [root] DEBUG: DLL unloaded from 0x725F0000.\n2022-04-26 17:47:22,042 [root] DEBUG: DLL unloaded from 0x77870000.\n2022-04-26 17:47:22,058 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x725C0000 for section view with handle 0x2dc.\n2022-04-26 17:47:22,073 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x2fc and local view 0x71FB0000 to global list.\n2022-04-26 17:47:22,073 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x72530000 for section view with handle 0x2fc.\n2022-04-26 17:47:22,073 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x73F20000 for section view with handle 0x2fc.\n2022-04-26 17:47:22,089 [root] DEBUG: api-rate-cap: memcpy hook disabled due to rate.\n2022-04-26 17:47:22,089 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x71ED0000 for section view with handle 0x2fc.\n2022-04-26 17:47:22,089 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x73140000 for section view with handle 0x2fc.\n2022-04-26 17:47:22,089 [root] DEBUG: DLL loaded at 0x73F20000: C:\\Windows\\SYSTEM32\\ntmarta (0x28000 bytes).\n2022-04-26 17:47:22,089 [root] DEBUG: DLL loaded at 0x72530000: C:\\Windows\\System32\\CoreMessaging (0x8f000 bytes).\n2022-04-26 17:47:22,104 [root] DEBUG: DLL loaded at 0x71ED0000: C:\\Windows\\SYSTEM32\\wintypes (0xd1000 bytes).\n2022-04-26 17:47:22,104 [root] DEBUG: DLL loaded at 0x73140000: C:\\Windows\\SYSTEM32\\usermgrcli (0x10000 bytes).\n2022-04-26 17:47:22,104 [root] DEBUG: DLL loaded at 0x71FB0000: C:\\Windows\\System32\\CoreUIComponents (0x227000 bytes).\n2022-04-26 17:47:22,104 [root] DEBUG: DLL loaded at 0x725C0000: C:\\Windows\\System32\\TextInputFramework (0x67000 bytes).\n2022-04-26 17:47:22,104 [root] DEBUG: caller_dispatch: Adding region at 0x725C0000 to caller regions list (ntdll::NtQuerySystemInformation returns to 0x725E68D6, thread 608).\n2022-04-26 17:47:22,104 [root] DEBUG: caller_dispatch: Dump of calling region at 0x725C0000 skipped (ntdll::NtQuerySystemInformation returns to 0x725E68D6 mapped as \\Device\\HarddiskVolume2\\Windows\\SysWOW64\\TextInputFramework.dll).\n2022-04-26 17:47:22,136 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x368 and local view 0x008F0000 to global list.\n2022-04-26 17:47:22,136 [root] DEBUG: NtProtectVirtualMemory: Rescinding caller region at 0x725C0000 due to protection change.\n2022-04-26 17:47:22,151 [root] DEBUG: caller_dispatch: Adding region at 0x725C0000 to caller regions list (ntdll::NtProtectVirtualMemory returns to 0x725EB903, thread 608).\n2022-04-26 17:47:22,151 [root] DEBUG: caller_dispatch: Dump of calling region at 0x725C0000 skipped (ntdll::NtProtectVirtualMemory returns to 0x725EB903 mapped as \\Device\\HarddiskVolume2\\Windows\\SysWOW64\\TextInputFramework.dll).\n2022-04-26 17:47:22,151 [root] DEBUG: NtProtectVirtualMemory: Rescinding caller region at 0x725C0000 due to protection change.\n2022-04-26 17:47:22,151 [root] DEBUG: caller_dispatch: Adding region at 0x725C0000 to caller regions list (ntdll::NtOpenSection returns to 0x725E97DB, thread 608).\n2022-04-26 17:47:22,151 [root] DEBUG: caller_dispatch: Dump of calling region at 0x725C0000 skipped (ntdll::NtOpenSection returns to 0x725E97DB mapped as \\Device\\HarddiskVolume2\\Windows\\SysWOW64\\TextInputFramework.dll).\n2022-04-26 17:47:30,667 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x364 and local view 0x008B0000 to global list.\n2022-04-26 17:47:30,667 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x008F0000 for section view with handle 0x364.\n2022-04-26 17:47:48,073 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x008B0000 for section view with handle 0x368.\n2022-04-26 17:47:48,073 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x008F0000 for section view with handle 0x368.\n2022-04-26 17:48:06,763 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x2f0 and local view 0x008B0000 to global list.\n2022-04-26 17:48:06,763 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x374 and local view 0x00930000 to global list.\n2022-04-26 17:48:23,450 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x008B0000 for section view with handle 0x374.\n2022-04-26 17:48:23,450 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x300 and local view 0x00930000 to global list.\n2022-04-26 17:48:41,247 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x008B0000 for section view with handle 0x300.\n2022-04-26 17:48:41,247 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x2e0 and local view 0x00930000 to global list.\n2022-04-26 17:48:58,778 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x008B0000 for section view with handle 0x2e0.\n2022-04-26 17:48:58,778 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x00930000 for section view with handle 0x300.\n2022-04-26 17:49:33,983 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x378 and local view 0x008B0000 to global list.\n2022-04-26 17:49:33,983 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x00930000 for section view with handle 0x2e0.\n2022-04-26 17:49:51,624 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x008B0000 for section view with handle 0x2e0.\n2022-04-26 17:49:51,624 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x00930000 for section view with handle 0x378.\n2022-04-26 17:50:09,312 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x008B0000 for section view with handle 0x378.\n2022-04-26 17:50:09,312 [root] DEBUG: MapSectionViewHandler: Added section view with handle 0x380 and local view 0x00930000 to global list.\n2022-04-26 17:50:27,109 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x008B0000 for section view with handle 0x380.\n2022-04-26 17:50:27,109 [root] DEBUG: MapSectionViewHandler: Updated local view to 0x00930000 for section view with handle 0x380.\n2022-04-26 17:50:40,094 [root] INFO: Analysis timeout hit, terminating analysis\n2022-04-26 17:50:40,094 [lib.api.process] INFO: Terminate event set for process 2512\n2022-04-26 17:50:40,094 [root] DEBUG: Terminate Event: Attempting to dump process 2512\n2022-04-26 17:50:40,094 [root] DEBUG: DoProcessDump: Dumping Imagebase at 0x00400000.\n2022-04-26 17:50:40,094 [root] DEBUG: DumpImageInCurrentProcess: Attempting to dump virtual PE image.\n2022-04-26 17:50:40,109 [root] DEBUG: DumpProcess: Instantiating PeParser with address: 0x00400000.\n2022-04-26 17:50:40,109 [root] DEBUG: DumpProcess: Module entry point VA is 0x000466F4.\n2022-04-26 17:50:40,109 [lib.common.results] INFO: File C:\\MnfCCH\\CAPE\\2512_446940501626242022 size is 499712, Max size: 100000000\n2022-04-26 17:50:40,125 [root] DEBUG: DumpProcess: Module image dump success - dump size 0x7a000.\n2022-04-26 17:50:40,125 [root] INFO: Added new file to list with pid None and path C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\INetCache\\counters2.dat\n2022-04-26 17:50:40,125 [lib.api.process] INFO: Termination confirmed for process 2512\n2022-04-26 17:50:40,125 [root] INFO: Terminate event set for process 2512\n2022-04-26 17:50:40,125 [root] DEBUG: Terminate Event: CAPE shutdown complete for process 2512\n2022-04-26 17:50:40,125 [root] INFO: Created shutdown mutex\n2022-04-26 17:50:41,141 [root] INFO: Shutting down package\n2022-04-26 17:50:41,141 [root] INFO: Stopping auxiliary modules\n2022-04-26 17:50:41,250 [lib.common.results] WARNING: File C:\\MnfCCH\\bin\\procmon.xml doesn't exist anymore\n2022-04-26 17:50:41,250 [root] INFO: Finishing auxiliary modules\n2022-04-26 17:50:41,250 [root] INFO: Shutting down pipe server and dumping dropped files\n2022-04-26 17:50:41,266 [lib.common.results] INFO: File C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Web Data size is 90112, Max size: 100000000\n2022-04-26 17:50:41,281 [lib.common.results] INFO: File C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Login Data size is 40960, Max size: 100000000\n2022-04-26 17:50:41,281 [lib.common.results] INFO: File C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\INetCache\\counters2.dat size is 128, Max size: 100000000\n2022-04-26 17:50:41,297 [root] WARNING: Folder at path \"C:\\MnfCCH\\debugger\" does not exist, skipping\n2022-04-26 17:50:41,297 [root] WARNING: Folder at path \"C:\\MnfCCH\\tlsdump\" does not exist, skipping\n2022-04-26 17:50:41,297 [root] INFO: Analysis completed\n",
+        "errors": []
+    },
+    "deduplicated_shots": [
+        "0001",
+        "0002",
+        "0003",
+        "0007",
+        "0008",
+        "0010"
+    ],
+    "dropped": [
+        {
+            "name": [
+                "Login Data"
+            ],
+            "path": "/opt/CAPEv2/storage/analyses/2003/files/442f1ead4942c541bc12db79dd6057371673abe18ece679d903617698f4a3e6e",
+            "guest_paths": [
+                "C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Login Data"
+            ],
+            "size": 40960,
+            "crc32": "967B83FD",
+            "md5": "00efea3d344f19c8908bb9c5a9f7a477",
+            "sha1": "274f19b97a82efdc00fd552c131dea5e367f6f58",
+            "sha256": "442f1ead4942c541bc12db79dd6057371673abe18ece679d903617698f4a3e6e",
+            "sha512": "4a4d2418e02889764cc80ce784543f30ba53a71daf40f3a82a0eba06417f5b3be239a47bc259ceda451fd86e8e8812ed4d8cb6d104c6bbfd55fb46804917aba6",
+            "rh_hash": null,
+            "ssdeep": "48:2+3tBA+IIDeNCVEq8Ma0D0HOlcFlNUK6lGNxGt7KLk8s8LKvUf9KVyJ7hU:dPoCn8MouOFlulGNxGt7KLyeymw",
+            "type": "SQLite 3.x database, last written using SQLite version 3037001",
+            "yara": [],
+            "cape_yara": [],
+            "clamav": [],
+            "tlsh": "T14403220E2EA82505CCAD86366CE254F62F7C612D8F13E9D27CB05475CE75461B52D0BB",
+            "sha3_384": "b485c5968a1e4a42a792d25e4bb25e5d18ef5867f39c2bb2db0a547943af71cb407fb14dbd503a4341374c97f1e8c677"
+        }
+    ],
+    "network": {
+        "pcap_sha256": "6c0ac848f33cfd2060a83d629318ca01c27425756e1936a082ad0c90d649aa2d",
+        "hosts": [
+            {
+                "ip": "185.215.113.115",
+                "country_name": "Portugal",
+                "hostname": "",
+                "inaddrarpa": ""
+            }
+        ],
+        "domains": [
+            {
+                "domain": "insiderppe.cloudapp.net",
+                "ip": ""
+            }
+        ],
+        "tcp": [],
+        "udp": [
+            {
+                "src": "192.168.122.13",
+                "sport": 62686,
+                "dst": "192.168.122.3",
+                "dport": 53,
+                "offset": 9421,
+                "time": 62.208251953125
+            }
+        ],
+        "icmp": [],
+        "http": [],
+        "dns": [
+            {
+                "request": "insiderppe.cloudapp.net",
+                "type": "A",
+                "answers": [
+                    {
+                        "type": "A",
+                        "data": "192.168.122.3"
+                    }
+                ]
+            },
+            {
+                "request": "12.122.168.192.in-addr.arpa",
+                "type": "PTR",
+                "answers": []
+            }
+        ],
+        "smtp": [],
+        "irc": [],
+        "dead_hosts": [
+            [
+                "192.168.122.3",
+                443
+            ],
+            [
+                "192.168.122.13",
+                49675
+            ],
+            [
+                "192.168.122.13",
+                49679
+            ],
+            [
+                "192.168.122.13",
+                49682
+            ],
+            [
+                "192.168.122.13",
+                49683
+            ],
+            [
+                "192.168.122.13",
+                49684
+            ],
+            [
+                "192.168.122.13",
+                49690
+            ],
+            [
+                "192.168.122.13",
+                49693
+            ]
+        ],
+        "http_ex": [],
+        "https_ex": [],
+        "smtp_ex": []
+    },
+    "procdump": [
+        {
+            "name": "2b9ae59738fa8ab99f2e05a2e3eb4b4ebf82e7c167cd9c5552d096b4112a6f88",
+            "path": "/opt/CAPEv2/storage/analyses/2003/procdump/2b9ae59738fa8ab99f2e05a2e3eb4b4ebf82e7c167cd9c5552d096b4112a6f88",
+            "guest_paths": "0;?C:\\Users\\Administrator\\AppData\\Local\\Temp\\08684156aa00d8d0b1d0.exe;?C:\\Users\\Administrator\\AppData\\Local\\Temp\\08684156aa00d8d0b1d0.exe;?",
+            "size": 499712,
+            "crc32": "FDFF372E",
+            "md5": "7d04608559a3d4e5a73de6d39effc3b2",
+            "sha1": "68551d3c460eb79cf4e0b50b413afe82120094d4",
+            "sha256": "2b9ae59738fa8ab99f2e05a2e3eb4b4ebf82e7c167cd9c5552d096b4112a6f88",
+            "sha512": "32f02ee708791447b6ad7fc256fe69dbe0624c8e25c7a7768bc9b9280b64604ff05238a2e1d1ee1914eb69a849c180e20d54f0ca8a10c95e5a60d04c9e4d8a73",
+            "rh_hash": null,
+            "ssdeep": "6144:UE+Z7EAXrvPRIxK0zBL/TIDC2dL3RltnfoBglM7zMUdsvk3zFAtM6zkizX:EZ7FXrPy4ix+LBltsgK7zXIqKkk",
+            "type": "PE32 executable (GUI) Intel 80386, for MS Windows",
+            "yara": [],
+            "cape_yara": [],
+            "clamav": [],
+            "tlsh": "T133B4AE03F3D28076E8A70570066B5B36DEFABE201635895757D41C89BEB16D2EA3E307",
+            "sha3_384": "27d2178f61244069a6713e97d5262a141d9927f58eaa59c67be307079c90689476e579b889cbfa20f0504f224351c8d2",
+            "process_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\08684156aa00d8d0b1d0.exe",
+            "module_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\08684156aa00d8d0b1d0.exe",
+            "process_name": "08684156aa00d8d0b1d0.exe",
+            "pid": 2512,
+            "cape_type": "PE image: 32-bit executable",
+            "pe": {
+                "guest_signers": {
+                    "aux_sha1": null,
+                    "aux_timestamp": null,
+                    "aux_valid": false,
+                    "aux_error": true,
+                    "aux_error_desc": "No signature found.",
+                    "aux_signers": []
+                },
+                "digital_signers": [],
+                "imagebase": "0x00400000",
+                "entrypoint": "0x004466f4",
+                "ep_bytes": "6a7068c0e44400e80402000033ff57ff",
+                "peid_signatures": null,
+                "reported_checksum": "0x000aafaf",
+                "actual_checksum": "0x00087b1d",
+                "osversion": "4.0",
+                "pdbpath": "c:\\Projects\\VS2005\\WebBrowserPassView\\Command-Line\\WebBrowserPassView.pdb",
+                "imports": {
+                    "VERSION": {
+                        "dll": "VERSION.dll",
+                        "imports": [
+                            {
+                                "address": "0x44e340",
+                                "name": "GetFileVersionInfoW"
+                            },
+                            {
+                                "address": "0x44e344",
+                                "name": "VerQueryValueW"
+                            },
+                            {
+                                "address": "0x44e348",
+                                "name": "GetFileVersionInfoSizeW"
+                            }
+                        ]
+                    }
+                },
+                "exported_dll_name": null,
+                "exports": [],
+                "dirents": [
+                    {
+                        "name": "IMAGE_DIRECTORY_ENTRY_IMPORT",
+                        "virtual_address": "0x0005766c",
+                        "size": "0x000000f0"
+                    }
+                ],
+                "sections": [
+                    {
+                        "name": ".text",
+                        "raw_address": "0x00000400",
+                        "virtual_address": "0x00001000",
+                        "virtual_size": "0x0004d000",
+                        "size_of_data": "0x0004d000",
+                        "characteristics": "IMAGE_SCN_CNT_CODE|IMAGE_SCN_MEM_EXECUTE|IMAGE_SCN_MEM_READ",
+                        "characteristics_raw": "0x60000020",
+                        "entropy": "6.66"
+                    },
+                    {
+                        "name": ".rdata",
+                        "raw_address": "0x0004d400",
+                        "virtual_address": "0x0004e000",
+                        "virtual_size": "0x0000b000",
+                        "size_of_data": "0x0000ae00",
+                        "characteristics": "IMAGE_SCN_CNT_INITIALIZED_DATA|IMAGE_SCN_MEM_READ",
+                        "characteristics_raw": "0x40000040",
+                        "entropy": "5.87"
+                    },
+                    {
+                        "name": ".data",
+                        "raw_address": "0x00058200",
+                        "virtual_address": "0x00059000",
+                        "virtual_size": "0x0001a000",
+                        "size_of_data": "0x00019600",
+                        "characteristics": "IMAGE_SCN_CNT_INITIALIZED_DATA|IMAGE_SCN_MEM_READ|IMAGE_SCN_MEM_WRITE",
+                        "characteristics_raw": "0xc0000040",
+                        "entropy": "0.32"
+                    },
+                    {
+                        "name": ".rsrc",
+                        "raw_address": "0x00071800",
+                        "virtual_address": "0x00073000",
+                        "virtual_size": "0x00029000",
+                        "size_of_data": "0x00008800",
+                        "characteristics": "IMAGE_SCN_CNT_INITIALIZED_DATA|IMAGE_SCN_MEM_READ",
+                        "characteristics_raw": "0x40000040",
+                        "entropy": "5.89"
+                    }
+                ],
+                "overlay": null,
+                "resources": [
+                    {
+                        "name": "BIN",
+                        "offset": "0x00073a08",
+                        "size": "0x00001640",
+                        "filetype": null,
+                        "language": "LANG_HEBREW",
+                        "sublanguage": "SUBLANG_DEFAULT",
+                        "entropy": "7.97"
+                    }
+                ],
+                "versioninfo": [
+                    {
+                        "name": "InternalName",
+                        "value": "Web Browser Pass View"
+                    }
+                ],
+                "imphash": "6526bb2991df39dd134d2e134366b58f",
+                "timestamp": "2020-05-25 12:03:31",
+                "icon": "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",
+                "icon_hash": "b7e9577724370e57bffae9167fde8d76",
+                "icon_fuzzy": "a11d88dd523c2a1f4e6cd2da37e251e3",
+                "icon_dhash": "ac626be9f03ab8cc",
+                "imported_dll_count": 11
+            }
+        }
+    ],
+    "strings": [
+        "Microsoft\\Windows\\WebCache\\WebCacheV01.dat"
+    ],
+    "suricata": {
+        "alerts": [],
+        "tls": [],
+        "perf": [],
+        "files": [],
+        "http": [
+            {
+                "srcport": 49701,
+                "srcip": "192.168.122.13",
+                "dstport": 80,
+                "dstip": "192.168.122.3",
+                "timestamp": "2022-04-26 19:36:48.587604+0000",
+                "uri": "/ThawtePremiumServerCA.crl",
+                "length": 258,
+                "hostname": "crl.thawte.com",
+                "status": 200,
+                "http_method": "GET",
+                "contenttype": "text/html",
+                "ua": "Microsoft-CryptoAPI/10.0",
+                "referrer": "None"
+            }
+        ],
+        "dns": [
+            {
+                "timestamp": "2022-04-26T19:36:48.548946+0000",
+                "flow_id": 738258871935058,
+                "pcap_cnt": 90,
+                "event_type": "dns",
+                "src_ip": "192.168.122.13",
+                "src_port": 62686,
+                "dest_ip": "192.168.122.3",
+                "dest_port": 53,
+                "proto": "UDP",
+                "dns": {
+                    "type": "query",
+                    "id": 1098,
+                    "rrname": "crl.thawte.com",
+                    "rrtype": "A",
+                    "tx_id": 0
+                }
+            },
+            {
+                "timestamp": "2022-04-26T19:36:48.560363+0000",
+                "flow_id": 738258871935058,
+                "pcap_cnt": 91,
+                "event_type": "dns",
+                "src_ip": "192.168.122.13",
+                "src_port": 62686,
+                "dest_ip": "192.168.122.3",
+                "dest_port": 53,
+                "proto": "UDP",
+                "dns": {
+                    "version": 2,
+                    "type": "answer",
+                    "id": 1098,
+                    "flags": "8500",
+                    "qr": true,
+                    "aa": true,
+                    "rd": true,
+                    "rrname": "crl.thawte.com",
+                    "rrtype": "A",
+                    "rcode": "NOERROR",
+                    "answers": [
+                        {
+                            "rrname": "crl.thawte.com",
+                            "rrtype": "A",
+                            "ttl": 3600,
+                            "rdata": "192.168.122.3"
+                        }
+                    ],
+                    "grouped": {
+                        "A": [
+                            "192.168.122.3"
+                        ]
+                    }
+                }
+            },
+            {
+                "timestamp": "2022-04-26T19:38:22.719462+0000",
+                "flow_id": 1062208933919334,
+                "pcap_cnt": 105,
+                "event_type": "dns",
+                "src_ip": "192.168.122.13",
+                "src_port": 56409,
+                "dest_ip": "192.168.122.3",
+                "dest_port": 53,
+                "proto": "UDP",
+                "dns": {
+                    "type": "query",
+                    "id": 16000,
+                    "rrname": "12.122.168.192.in-addr.arpa",
+                    "rrtype": "PTR",
+                    "tx_id": 0
+                }
+            },
+            {
+                "timestamp": "2022-04-26T19:38:22.731258+0000",
+                "flow_id": 1062208933919334,
+                "pcap_cnt": 106,
+                "event_type": "dns",
+                "src_ip": "192.168.122.13",
+                "src_port": 56409,
+                "dest_ip": "192.168.122.3",
+                "dest_port": 53,
+                "proto": "UDP",
+                "dns": {
+                    "version": 2,
+                    "type": "answer",
+                    "id": 16000,
+                    "flags": "8500",
+                    "qr": true,
+                    "aa": true,
+                    "rd": true,
+                    "rrname": "12.122.168.192.in-addr.arpa",
+                    "rrtype": "PTR",
+                    "rcode": "NOERROR",
+                    "answers": [
+                        {
+                            "rrname": "12.122.168.192.in-addr.arpa",
+                            "rrtype": "PTR",
+                            "ttl": 3600,
+                            "rdata": "www.malware.com"
+                        }
+                    ],
+                    "grouped": {
+                        "PTR": [
+                            "www.malware.com"
+                        ]
+                    }
+                }
+            }
+        ],
+        "ssh": [],
+        "fileinfo": [],
+        "eve_log_full_path": "/opt/CAPEv2/storage/analyses/2003/logs/eve.json",
+        "alert_log_full_path": null,
+        "tls_log_full_path": null,
+        "http_log_full_path": null,
+        "file_log_full_path": null,
+        "ssh_log_full_path": null,
+        "dns_log_full_path": null
+    },
+    "target": {
+        "category": "file",
+        "file": {
+            "name": "08684156aa00d8d0b1d0.exe",
+            "path": "/opt/CAPEv2/storage/binaries/2003/08684156aa00d8d0b1d07fd3d72cea329597cc175648cb0caf3a08584f6d4dc7",
+            "guest_paths": null,
+            "size": 638976,
+            "crc32": "FB6B5AB5",
+            "md5": "24f60894003c5fff5c329587e04d01c5",
+            "sha1": "3e89bdb0c7d20120343e654a2647418dfc9c38d0",
+            "sha256": "08684156aa00d8d0b1d07fd3d72cea329597cc175648cb0caf3a08584f6d4dc7",
+            "sha512": "81b979f602f06ce12113b9dbdc3af16dece701706ad086deace1395a4498e2922494183f2f31da9f30ac95b73da3469d90f23d06fc5502d253fb17b11715709d",
+            "rh_hash": null,
+            "ssdeep": "6144:WE+Z7EAXrvPRIxK0zBL/TIDC2dL3RltnfoBglM7zMUdsvk3zOAt76zkizX:KZ7FXrPy4ix+LBltsgK7zXIqQkk",
+            "type": "PE32 executable (GUI) Intel 80386, for MS Windows",
+            "yara": [],
+            "cape_yara": [],
+            "clamav": [],
+            "tlsh": "T1EAD4AE03F3D28076E8A70570466B5B36DEFABE201635895757D01C89BEB16D2EA3E307",
+            "sha3_384": "16035858611634ffa4bbd9ddfdc49614b119c729483f229285ebb029efbf39a61ec3431d08fe3a9c933e2b442e3e599e",
+            "pe": {
+                "guest_signers": {
+                    "aux_sha1": null,
+                    "aux_timestamp": null,
+                    "aux_valid": false,
+                    "aux_error": true,
+                    "aux_error_desc": "No signature found.",
+                    "aux_signers": []
+                },
+                "digital_signers": [],
+                "imagebase": "0x00400000",
+                "entrypoint": "0x004466f4",
+                "ep_bytes": "6a7068c0e44400e80402000033ff57ff",
+                "peid_signatures": null,
+                "reported_checksum": "0x000aafaf",
+                "actual_checksum": "0x000aafaf",
+                "osversion": "4.0",
+                "pdbpath": null,
+                "imports": {
+                    "VERSION": {
+                        "dll": "VERSION.dll",
+                        "imports": [
+                            {
+                                "address": "0x44e340",
+                                "name": "GetFileVersionInfoW"
+                            },
+                            {
+                                "address": "0x44e344",
+                                "name": "VerQueryValueW"
+                            },
+                            {
+                                "address": "0x44e348",
+                                "name": "GetFileVersionInfoSizeW"
+                            }
+                        ]
+                    }
+                },
+                "exported_dll_name": null,
+                "exports": [],
+                "dirents": [
+                    {
+                        "name": "IMAGE_DIRECTORY_ENTRY_EXPORT",
+                        "virtual_address": "0x00000000",
+                        "size": "0x00000000"
+                    }
+                ],
+                "sections": [
+                    {
+                        "name": ".text",
+                        "raw_address": "0x00001000",
+                        "virtual_address": "0x00001000",
+                        "virtual_size": "0x0004d000",
+                        "size_of_data": "0x0004d000",
+                        "characteristics": "IMAGE_SCN_CNT_CODE|IMAGE_SCN_MEM_EXECUTE|IMAGE_SCN_MEM_READ",
+                        "characteristics_raw": "0x60000020",
+                        "entropy": "6.66"
+                    },
+                    {
+                        "name": ".rdata",
+                        "raw_address": "0x0004e000",
+                        "virtual_address": "0x0004e000",
+                        "virtual_size": "0x0000b000",
+                        "size_of_data": "0x0000b000",
+                        "characteristics": "IMAGE_SCN_CNT_INITIALIZED_DATA|IMAGE_SCN_MEM_READ",
+                        "characteristics_raw": "0x40000040",
+                        "entropy": "5.77"
+                    },
+                    {
+                        "name": ".data",
+                        "raw_address": "0x00059000",
+                        "virtual_address": "0x00059000",
+                        "virtual_size": "0x0001a000",
+                        "size_of_data": "0x0001a000",
+                        "characteristics": "IMAGE_SCN_CNT_INITIALIZED_DATA|IMAGE_SCN_MEM_READ|IMAGE_SCN_MEM_WRITE",
+                        "characteristics_raw": "0xc0000040",
+                        "entropy": "0.24"
+                    },
+                    {
+                        "name": ".rsrc",
+                        "raw_address": "0x00073000",
+                        "virtual_address": "0x00073000",
+                        "virtual_size": "0x00029000",
+                        "size_of_data": "0x00029000",
+                        "characteristics": "IMAGE_SCN_CNT_INITIALIZED_DATA|IMAGE_SCN_MEM_READ",
+                        "characteristics_raw": "0x40000040",
+                        "entropy": "1.62"
+                    }
+                ],
+                "overlay": null,
+                "resources": [
+                    {
+                        "name": "RT_BITMAP",
+                        "offset": "0x0007517c",
+                        "size": "0x000003e8",
+                        "filetype": null,
+                        "language": "LANG_HEBREW",
+                        "sublanguage": "SUBLANG_DEFAULT",
+                        "entropy": "3.65"
+                    }
+                ],
+                "versioninfo": [
+                    {
+                        "name": "FileDescription",
+                        "value": "Web Browser Password Viewer"
+                    }
+                ],
+                "imphash": "6526bb2991df39dd134d2e134366b58f",
+                "timestamp": "2020-05-25 12:03:31",
+                "icon": "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",
+                "icon_hash": "b7e9577724370e57bffae9167fde8d76",
+                "icon_fuzzy": "a11d88dd523c2a1f4e6cd2da37e251e3",
+                "icon_dhash": "ac626be9f03ab8cc",
+                "imported_dll_count": 11
+            }
+        }
+    },
+    "procmemory": [],
+    "signatures": [
+        {
+            "name": "infostealer_browser",
+            "description": "Steals private information from local Internet browsers",
+            "severity": 3,
+            "weight": 1,
+            "confidence": 30,
+            "references": [],
+            "data": [
+                {
+                    "file": "C:\\Users\\Administrator\\AppData\\Roaming\\Mozilla\\Firefox\\profiles.ini"
+                },
+                {
+                    "file": "C:\\Users\\Administrator\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\f6xukfaf.default\\key3.db"
+                },
+                {
+                    "file": "C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Web Data"
+                },
+                {
+                    "file": "C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Login Data"
+                }
+            ],
+            "new_data": [],
+            "alert": false,
+            "families": []
+        }
+    ],
+    "malscore": 6.800000000000001,
+    "ttps": [
+        {
+            "ttp": "T1081",
+            "signature": "infostealer_browser"
+        }
+    ]
+}
