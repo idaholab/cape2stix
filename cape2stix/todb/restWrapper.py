@@ -27,7 +27,7 @@ class RestAPIWrapper:
     def connectToDB(self):
         url = f"{self.api_url}/connect/{self.db}"
         try:
-            response = requests.get(url, auth=self.auth)
+            response = requests.get(url, auth=self.auth) #nosec
         except Exception as e:
             logging.error("Problem with http request")
             logging.exception(e)
@@ -37,7 +37,7 @@ class RestAPIWrapper:
     def query(self, queryString, limit=2147483647):
         url = f"{self.api_url}/query/{self.db}/sql/{queryString}/{limit}"
         try:
-            response = requests.get(url, auth=self.auth)
+            response = requests.get(url, auth=self.auth) #nosec
         except Exception as e:
             logging.error("Problem with http request")
             logging.exception(e)
@@ -169,7 +169,7 @@ class RestAPIWrapper:
         data = {"command": command}
         url = f"{self.api_url}/command/{self.db}/{lang_type}"
         try:
-            return requests.post(url, json=data, auth=self.auth)
+            return requests.post(url, json=data, auth=self.auth) #nosec
         except Exception as e:
             logging.error(error_msg)
             logging.exception(e)

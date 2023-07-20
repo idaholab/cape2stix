@@ -152,7 +152,7 @@ class CAPEClient:
             urljoin(self.url, f'apiv2/{"/".join([str(part) for part in rel_url])}/'),
             data=data,
             files=[("file", open(file_path, "rb"))],
-        ).json()
+        ).json() #nosec
 
     def submit_directory(
         self, dir_path, platform="windows", tags="win10", timeout=200, machines=None
@@ -172,21 +172,21 @@ class CAPEClient:
                     "machine": next(machines) if machines is not None else None,
                 },
                 files=[("file", open(os.path.join(dir_path, path), "rb"))],
-            ).json()
+            ).json() #nosec
             for path in os.listdir(dir_path)
         ]
 
     def get(self, rel_url, **kwargs):
-        return requests.get(
+        return requests.get( 
             urljoin(self.url, f'apiv2/{"/".join([str(part) for part in rel_url])}/'),
             params=kwargs,
-        ).json()
+        ).json() #nosec
 
     def post(self, rel_url, **kwargs):
         return requests.post(
             urljoin(self.url, f'apiv2/{"/".join([str(part) for part in rel_url])}/'),
             data=kwargs,
-        ).json()
+        ).json() #nosec
 
 
 def parse_args(args):

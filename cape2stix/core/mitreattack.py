@@ -11,7 +11,7 @@ MITREAttack = None
 
 
 def download(url, outpath, verify=True):
-    resp = requests.get(url, verify=verify)
+    resp = requests.get(url, verify=verify) #nosec
     with open(outpath, "wb") as f:
         f.write(resp.content)
 

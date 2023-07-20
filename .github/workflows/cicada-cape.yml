@@ -136,7 +136,7 @@ jobs:
     #------------------------run pages
       - name: PAGES
         run: |
-          cd docs
+          cd auto_docs
           poetry run sphinx-apidoc -o capesubd ../capesubd  
           poetry run sphinx-apidoc -o cape2stix ../cape2stix 
           poetry run make html
