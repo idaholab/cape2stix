@@ -123,14 +123,8 @@ class ConverterTestCase(unittest.TestCase):
     """
 
     def test_domain_valid(self):
-        try:
             dom_res = validate_instance(find_obj(self.content, "domain-name"), self.ops)
             self.assertTrue(dom_res.is_valid)
-        except Exception as err:
-            print(find_obj(self.content, "domain-name")) # testing the test
-            print(self.content)
-            print(err)
-
 
     @unittest.skipIf(SKIP_WARNINGS, "Temporarily skip warnings")
     def test_domain_warn(self):

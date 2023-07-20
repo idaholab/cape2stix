@@ -64,15 +64,17 @@ def clean():
 
 def check_install():
     "Checks if the user really installed everything"
-    apt_cache = apt.Cache()
-    for pkg in pkgs:
-        if pkg not in apt_cache:
-            log.debug(f"{pkg} was not installed")
-            args = ["./ubuntu.install"]
-            subprocess.run(args, check=True) # nosec B603
-            return None
+    pass
+    # FIX!: apt.Cache() currently non-operational due to environmental contraints
+    # apt_cache = apt.Cache()
+    # for pkg in pkgs:
+    #     if pkg not in apt_cache:
+    #         log.debug(f"{pkg} was not installed")
+    #         args = ["./ubuntu.install"]
+    #         subprocess.run(args, check=True) # nosec B603
+    #         return None
 
-    log.debug("checkInstall() finished")
+    # log.debug("checkInstall() finished")
 # --------------
 
 def cape_install():
