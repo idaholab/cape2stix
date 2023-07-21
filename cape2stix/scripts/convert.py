@@ -748,7 +748,7 @@ def parse_benign(benign_dir):
 
 
 @timing
-async def convert_file(args, BENIGN_DATA, sem=None):
+async def convert_file(args, BENIGN_DATA=None, sem=None):
     if sem is not None:
         await sem.acquire()
     try:
