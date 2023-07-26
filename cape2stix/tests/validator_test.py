@@ -47,11 +47,8 @@ class ConverterTestCase(unittest.TestCase):
             file_res = validate_file(converted_path, self.ops)
             self.assertTrue(file_res.is_valid)
         except Exception as err:
-            # print(file_res.is_valid)
-            # print(converted_path)
-            # print(self.content)
+            print(self.content)
             print(err)
-            # print(file_res.fatal.exception)
 
     def test_mal_valid(self):
         mal_res = validate_instance(find_obj(self.content, "malware"), self.ops)
