@@ -48,29 +48,8 @@ from cape2stix.core.mitreattack import AttackGen
 
 # pylint: disable=expression-not-assigned
 
-stix_uuid5 = '[a-z0-9-]+--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-5[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}'
 
-def parse_benign(benign_dir):
-    """parses a stix file and builds a list of UUIDv5s such 
-       that they can be removed from the converted file"""
-    try:
-        bundle = []
-        checkSoftware = lambda obj: (isinstance(obj, Software) and (obj.name == "KVM" or "win10" in obj.name or "ubuntu22" in obj.name))
-        for f in os.listdir(benign_dir):
-            if not f.endswith(".json"): continue #ignore non json files
-            with open(os.path.join(benign_dir, f)) as b:
-                b = parse(b, allow_custom=True)
-                [bundle.append(obj) for obj in b.objects if not checkSoftware(obj)]
 
-        pre = {obj.type: [] for obj in bundle if re.match(stix_uuid5, obj.id)} # return a dictionary of the form {object_type: List[object_id]}
-        [pre[obj.type].append(obj.id) for obj in bundle if re.match(stix_uuid5, obj.id)] # populate the List[object_id] of each object_type
-        return pre
-
-    except Exception as err:
-        logging.critical("Failed to parse files in benign/")
-        logging.exception(err)
-
-benign = parse_benign("cape2stix/scripts/benign/") 
 
 class Cape2STIX:
     """
@@ -78,7 +57,7 @@ class Cape2STIX:
     param: file - path to json file
     """
 
-    def __init__(self, file=None, data=None, allow_custom=True, small=False):
+    def __init__(self, file=None, data=None, allow_custom=True, small=False, benign_data=None):
         self.file = file
         self.allow_custom = allow_custom
         self.gen_viewable = small
@@ -91,8 +70,7 @@ class Cape2STIX:
         self.objects = []
         self.fspec={}
         self.fhash={}
-        self.whitelist=[]
-        
+        self.benign_data=benign_data
     def firstTimeSetup(self):
         pass
     
@@ -245,7 +223,8 @@ class Cape2STIX:
                 self.genNetworkTraffic(), rel_type="uses", main_obj=malware_obj
             )
 
-            self.clean_benign(benign) # parses current report and removes benign objects
+            if self.benign_data is not None:
+                self.clean_benign(self.benign_data) # parses current report and removes benign objects
 
             if outpath is not None:
                 logging.info(f"finished with {outpath}")
@@ -732,6 +711,7 @@ def parse_args(args):
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("-u", action="store_true", help="run tests with base file")
 
+    parser.add_argument("--clean_benign", action="store_true", default=False, help="remove known benign STIX data ")
     group.add_argument(
         "-f",
         "--file",
@@ -743,13 +723,37 @@ def parse_args(args):
 
     return parser.parse_args(args)
 
+def parse_benign(benign_dir):
+    """parses a stix file and builds a list of UUIDv5s such 
+       that they can be removed from the converted file"""
+    stix_uuid5 = '[a-z0-9-]+--[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-5[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}'
+
+    try:
+        bundle = []
+        checkSoftware = lambda obj: (isinstance(obj, Software) and (obj.name == "KVM" or "win10" in obj.name or "ubuntu22" in obj.name))
+        for f in os.listdir(benign_dir):
+            if not f.endswith(".json"): continue #ignore non json files
+            with open(os.path.join(benign_dir, f)) as b:
+                b = parse(b, allow_custom=True)
+                [bundle.append(obj) for obj in b.objects if not checkSoftware(obj)]
+
+        pre = {obj.type: [] for obj in bundle if re.match(stix_uuid5, obj.id)} # return a dictionary of the form {object_type: List[object_id]}
+        [pre[obj.type].append(obj.id) for obj in bundle if re.match(stix_uuid5, obj.id)] # populate the List[object_id] of each object_type
+        return pre
+
+    except Exception as err:
+        logging.critical("Failed to parse files in benign/")
+        logging.exception(err)
+
+
+
 @timing
-async def convert_file(args, sem=None):
+async def convert_file(args, BENIGN_DATA=None, sem=None):
     if sem is not None:
         await sem.acquire()
     try:
         file_path, custom, small, outpath = args
-        cs = Cape2STIX(file_path, allow_custom=custom, small=small)
+        cs = Cape2STIX(file_path, allow_custom=custom, small=small, benign_data=BENIGN_DATA)
         await cs.setup()
         await cs.convert(outpath=outpath)
     except Exception as e:
@@ -758,6 +762,7 @@ async def convert_file(args, sem=None):
     finally:
         if sem is not None:
             sem.release()
+
 
 
 @timing
@@ -773,9 +778,14 @@ async def _main():
         logging.debug(args.file)
 
         if os.path.exists(args.file):
+            if args.clean_benign: BENIGN_DATA = parse_benign("cape2stix/scripts/benign/")
+            else: BENIGN_DATA=None
+            
             if os.path.isdir(args.file):
                 promises = []
                 sem = asyncio.Semaphore(5)
+                
+
                 for file_path in os.listdir(args.file):
                     if file_path.startswith("."):
                         logging.warning(f"skipping {file_path} as it starts with '.'")
@@ -794,6 +804,7 @@ async def _main():
                                 args.small,
                                 f"output/{file_path}",
                             ),
+                            BENIGN_DATA,
                             sem=sem,
                         )
                     )
@@ -806,7 +817,8 @@ async def _main():
                         not args.disallow_custom,
                         args.small,
                         f"output/{os.path.basename(file_path)}",
-                    )
+                    ),
+                    BENIGN_DATA,
                 )
         else:
             logging.error(
