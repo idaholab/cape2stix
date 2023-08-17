@@ -1,127 +1,36 @@
-# Download Neo4J Desktop
-Navigate to the following URL and install for your operating system:
-https://neo4j.com/download-center/#desktop
+# NEO4j Setup
+Neo4j is the database used to store and conduct analysis on converted CAPE reports. Users can either auto-build the docker container or manually install the database.
 
-Neo4J Desktop allows us a GUI to execute commands against a Neo4J database as well as view the data in a graph view.
-
-## Linux
-Run the AppImage
-
-## Windows
-
-## MacOS
-Run the DMG file directly or move it to Applications and run like a traditional application.
-
-## Database Setup
-Create a database through the GUI.
-If a ***Conflicts occured*** pop-up is displayed, make a note of the returned configuration ports:
-
-
-<img src="conflicts.png"  width="500" height="150">
-
-
-## Neo4J Plugins
-### APOC
-Ensure Plugin APOC is installed for this database.
-
-### Neo4j Streams
-
-### Others
-
-# Neo4J Docker
-TODO finish section
-```docker
-docker run \
-    --publish=7474:7474 --publish=7687:7687 \
-    --volume=$HOME/neo4j/data:/data \
-    neo4j
-```
-
-TODO: Build Docker Image
-TODO: Build docker-compose to spin up gephi and either this docker image or stock neo4j image
-
-# Cape2stix
+## Auto-Build - AMA_DEPLOY
+The preferred neo4j installation technique is with the docker container provided in the CAPE2STIX project. This method will compose docker containers for cape2stix and neo4j. See the [ama_deploy command-description](../ama_deploy.md#command-description) for more information. <br>Alternatively, users only needing neo4j can start the container with docker-compose:
 ```bash
-git clone https://github.com/idaholab/cape2stix
-cd cape2stix
+cd cape2stix/todb/
+sudo docker-compose up -d
 ```
+## Neo4j Access
+- A database named neo4j will be created. It can be accessed from a web-browser with the address `localhost:7474/browser/`
+- Credentials are currently defined in the docker-compose file as `neo4j:test`. This can be edited.
+- If there are conflicts on the ports 7474 and 7687, these can be edited in the docker compose.
+    - **7474 http** - The port for accessing the browser application
+        - If the http port is changed, use the new port for accessing **localhost:`port`/browser/**
+    - **7687 bolt** - The port for accessing the database.
+        - If the bolt port is changed, edit [line 134 of neo4j_bulk](../../cape2stix/todb/neo4j_bulk.py#L134), changing 7689 to the new bolt port number.
+        ```python
+        driver = neo4j.GraphDatabase.driver("bolt://localhost:7689", auth=(args.user, args.password))
+        ```
 
-## Convert Data
-If we have JSON files returned from cape2stix output and want them in STIX format:
-
-```python
-python(3) cape2stix/scripts/convert.py --file </path/to/file/or/directory> --log_level info
-```
-
-## Load Data
+## Submitting to Neo4j
+To submit, users need to be in the poetry shell environment and the todb/ directory. 
 ```bash
 poetry shell
 poetry install
 cd cape2stix/cape2stix/todb/
 ```
-
-If the bolt address mentioned through the <b>Database Setup</b> is not 7687 then change line 133 to the proper port.
-```python
-driver = neo4j.GraphDatabase.driver("bolt://localhost:7689", auth=(args.user, args.password))
-```
-Run
+Submit STIX files to the neo4j database with the following command:
 ```bash
-python(3) neo4jbulk.py </absolute/path/to/stix/file/or/directory> <neo4j_username> <database_password>
+python3 neo4j_bulk.py </absolute/path/to/stix/file/or/directory> <neo4j_username> <database_password>
 ```
+Neo4j queries are done in the [Cypher Query Language](https://neo4j.com/developer/cypher/)<br>An example of a query in the browser can be seen below
+![Browser Query Example](neo4j_query.png)
 
-# Gephi
-From Gephi's official website (https://gephi.github.io), download the TAR installer file.
-
-## Linux
-Once the download has finished, untar the file:
-```bash
-tar -xvf gephi.tar.gz
-```
-
-Ensure that the correct JAVA JRE/JDK path is set in gephi config.
-```bash
-cd gephi
-vim /etc/gephi.config
-```
-On my linux host, JAVA JDK was installed at the following location: `/usr/lib/jvm/java-11-openjdk-amd64/`.
-Replace the jdkhome variable with the correct location.
-
-Run Gephi.
-```bash
-./bin/gephi
-```
-
-Alternatively, we can run Gephi with an environment variable to override jdkhome.
-```bash
-./bin/gephi --jdkhome /usr/lib/jvm/java-8-openjdk-amd64/
-```
-
-Select `New Project`
-
-## Downloading Plugins
-Click on `Tools --> Plugins --> Available Plugins`
-Install the Graph Streaming and Neo4J plugins.
-If these plugins do not exist in Available Plugins folder, click the `Check for Newest` button.
-
-
-## Plugin Usage
-### Neo4J
-Click on `File --> Import --> Next`
-Fill out the connection settings.
-We do not need to state a database name if we are using bolt port.
-
-Example:
-<img src="dbsetup.png"  width="700" height="500">
-
-Click the `Verify` button.
-
-Ensure there were no issues during import and then click `Okay`.
-<img src="final_import.png"  width="700" height="500">
-
-Profit:
-
-<img src="first_view.png"  width="750" height="450">
-
-
-### Graph Streaming
-TODO: Assuming we must have streaming plugin from Neo4J running..
+## Additional 
