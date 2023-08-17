@@ -549,6 +549,10 @@
             {
                 "domain": "insiderppe.cloudapp.net",
                 "ip": ""
+            },
+            {
+                "domain": "www.msftconnecttest.com",
+                "ip": ""
             }
         ],
         "tcp": [],

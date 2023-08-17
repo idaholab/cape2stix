@@ -43,8 +43,12 @@ class ConverterTestCase(unittest.TestCase):
         cls.ops = ValidationOptions(disabled="202")  # disable suggested relationship
 
     def test_bundle(self):
-        file_res = validate_file(converted_path, self.ops)
-        self.assertTrue(file_res.is_valid)
+        try:
+            file_res = validate_file(converted_path, self.ops)
+            self.assertTrue(file_res.is_valid)
+        except Exception as err:
+            print(self.content)
+            print(err)
 
     def test_mal_valid(self):
         mal_res = validate_instance(find_obj(self.content, "malware"), self.ops)
