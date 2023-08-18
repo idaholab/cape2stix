@@ -163,6 +163,9 @@ class Cape2STIX:
     async def convert(self, outpath=None):
         "Primary logic of convert.py; calls the gen-functions to convert report data into stix objects"
         try:
+            if ("target" not in self.content) or ("category" not in self.content["target"]):
+                logging.error(f"{self.file} is not a valid CAPE report, skipping!")
+                return None
             if self.content["target"]["category"] == "file": # NOTE: i don't have enough reports to test if this will ever not be true;this is for safety -wb 
                 self.fspec = self.content["target"]["file"]
                 h=self.fspec
@@ -232,7 +235,7 @@ class Cape2STIX:
             else:
                 await self.sl.write_out("Test_MalwareAnalysisCAPE.json")
         except Exception as e:
-            logging.critical("File failed to convert: ")
+            logging.critical(f"File failed to convert: {self.file}")
             logging.exception(e)
 
     # ie function to create processes.. return process tree so arg here would be parent process.
