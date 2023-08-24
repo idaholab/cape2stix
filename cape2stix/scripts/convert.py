@@ -166,14 +166,16 @@ class Cape2STIX:
             if ("target" not in self.content) or ("category" not in self.content["target"]):
                 logging.error(f"{self.file} is not a valid CAPE report, skipping!")
                 return None
-            if self.content["target"]["category"] == "file": # NOTE: i don't have enough reports to test if this will ever not be true;this is for safety -wb 
+            if self.content["target"]["category"] == "file":
                 self.fspec = self.content["target"]["file"]
                 h=self.fspec
                 self.fhash = {
                     "md5": h["md5"], "sha1": h["sha1"], "sha256": h["sha256"],
-                    "ssdeep": h["ssdeep"], "sha3_384": h["sha3_384"],
-                    "tlsh": re.sub(r'^T1', '', h["tlsh"], count=1) # NOTE: errors will occur if tlsh is unpopulated -wb 
-                }
+                    "ssdeep": h["ssdeep"], "sha3_384": h["sha3_384"]}
+
+                if h["tlsh"] is not None:
+                    self.fhash["tlsh"]=re.sub(r'^T1', '', h["tlsh"], count=1)
+                self.fhash = {key: value for key, value in self.fhash.items() if value is not None}
 
             _, malware_objs = self.add_objects(self.genMalware())
             malware_obj = malware_objs[0]
@@ -459,23 +461,29 @@ class Cape2STIX:
         # NOTE: The C and E TTPs are from the malware behavior catalogs, for now not including them.
         # NOTE: There may be multiple signatures that could be "hit", it may be desirable to represent that
         unique = set()
-        for ttp in self.content["ttps"]:
-            if ttp["ttp"].startswith("T"):
-                if ttp["ttp"] in unique:
-                    continue
-                else:
-                    unique.add(ttp["ttp"])
+        try:
+            for ttp in self.content["ttps"]:
+                if ttp["ttp"].startswith("T"):
+                    if ttp["ttp"] in unique:
+                        continue
+                    else:
+                        unique.add(ttp["ttp"])
+    
+                    ttp_data = AttackGen.githubVersion(ttp["ttp"][1:])
+                    if ttp_data is None:
+                        continue
+                    ap = self.create_object(
+                        AttackPattern,
+                        **ttp_data,
+                    )
+                    ap = self.es.replace_w_extensions_spec(ap, "mitre")
+                    ttp_list.append(ap)
+            return (ttp_list, ttp_list)
+            
+        except Exception as e:
+            logging.critical(f"File failed to convert: {self.file}")
+            logging.exception(e)
 
-                ttp_data = AttackGen.githubVersion(ttp["ttp"][1:])
-                if ttp_data is None:
-                    continue
-                ap = self.create_object(
-                    AttackPattern,
-                    **ttp_data,
-                )
-                ap = self.es.replace_w_extensions_spec(ap, "mitre")
-                ttp_list.append(ap)
-        return (ttp_list, ttp_list)
 
     @timing
     def genMutexes(self):
