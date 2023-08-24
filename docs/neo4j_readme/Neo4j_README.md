@@ -34,3 +34,4 @@ Neo4j queries are done in the [Cypher Query Language](https://neo4j.com/develope
 ![Browser Query Example](neo4j_query.png)
 
 ## Additional 
+While the Neo4j docker container is the easiest way to quickly set up a database environment for CAPE2STIX, it may not be optimal for every use case. Further Neo4j install instructions can be found in the [Neo4j additions documentation.](neo4j_additions.md)
