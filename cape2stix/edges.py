@@ -5,6 +5,7 @@ from collections import Counter
 from pprint import pprint
 import logging
 
+logging.basicConfig(filename='LOG.log', encoding='utf-8', level=logging.DEBUG)
 directory = "output"
 wdups = []      # array with duplicates
 dedup = set()   # set de-duplicated
