@@ -1,3 +1,4 @@
+#ATTN: DEPRECATED. USE CONNECTIVITY.PY
 import os
 from tqdm import tqdm
 import json

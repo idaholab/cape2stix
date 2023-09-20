@@ -1,10 +1,16 @@
+'''This script is intended to validate all files in the output directory.
+Requires revision in the future'''
+
 import os
 import logging
 import json
 from tqdm import tqdm
 from stix2validator import validate_instance, print_results
+# pylint: disable=trailing-whitespace
+# pylint: disable=invalid-name
+# pylint: disable=logging-fstring-interpolation
 
-logging.basicConfig(filename='validated.log', encoding='utf-8', level=logging.DEBUG)
+logging.basicConfig(filename='validated.log', encoding='utf-8', level=logging.INFO)
 
 directory = "output"
 val = 0
