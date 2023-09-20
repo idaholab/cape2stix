@@ -1,0 +1,1572 @@
+{
+    "type": "bundle",
+    "id": "bundle--d8b5e80b-f9de-4dd3-88f7-bfe384bbfaeb",
+    "objects": [
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "created": "2023-09-15T19:50:31.529703Z",
+            "modified": "2023-09-15T19:50:31.529703Z",
+            "name": "2023-06-08 22:58:45",
+            "is_family": false,
+            "extensions": {
+                "extension-definition--5084240c-3a33-4931-9dcd-e4b6c5bc1ff3": {
+                    "extension_type": "property-extension"
+                }
+            }
+        },
+        {
+            "type": "software",
+            "spec_version": "2.1",
+            "id": "software--de6e909c-794b-5572-b308-6d54f8171d69",
+            "name": "win10_0"
+        },
+        {
+            "type": "software",
+            "spec_version": "2.1",
+            "id": "software--6b0a478b-c366-563e-a38f-c97f3ef07500",
+            "name": "KVM"
+        },
+        {
+            "type": "malware-analysis",
+            "spec_version": "2.1",
+            "id": "malware-analysis--ceb8fae9-3414-4bce-8463-4257011f45e6",
+            "created": "2023-09-15T19:50:31.530464Z",
+            "modified": "2023-09-15T19:50:31.530464Z",
+            "product": "2.4-CAPE",
+            "version": "2.4-CAPE",
+            "host_vm_ref": "software--6b0a478b-c366-563e-a38f-c97f3ef07500",
+            "operating_system_ref": "software--de6e909c-794b-5572-b308-6d54f8171d69",
+            "modules": [
+                "dll"
+            ],
+            "submitted": "2023-06-08T22:51:30Z",
+            "analysis_started": "2023-06-08T22:51:30Z",
+            "analysis_ended": "2023-06-08T22:58:45Z",
+            "result": "malware"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cdc26e24-ed64-5699-9a5a-b6ae603ed351",
+            "created": "2023-09-15T19:50:31.530769Z",
+            "modified": "2023-09-15T19:50:31.530769Z",
+            "relationship_type": "related-to",
+            "source_ref": "software--de6e909c-794b-5572-b308-6d54f8171d69",
+            "target_ref": "software--6b0a478b-c366-563e-a38f-c97f3ef07500"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cf5d8fe9-6cee-51f1-9eed-1a33ae01464e",
+            "created": "2023-09-15T19:50:31.530972Z",
+            "modified": "2023-09-15T19:50:31.530972Z",
+            "relationship_type": "dynamic-analysis-of",
+            "source_ref": "malware-analysis--ceb8fae9-3414-4bce-8463-4257011f45e6",
+            "target_ref": "software--de6e909c-794b-5572-b308-6d54f8171d69"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2161d4d9-7d13-541b-bb6e-9b269a150a14",
+            "created": "2023-09-15T19:50:31.531172Z",
+            "modified": "2023-09-15T19:50:31.531172Z",
+            "relationship_type": "dynamic-analysis-of",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "malware-analysis--ceb8fae9-3414-4bce-8463-4257011f45e6"
+        },
+        {
+            "type": "process",
+            "spec_version": "2.1",
+            "id": "process--9935732b-edca-4b82-8fd6-42c3b58d948e",
+            "pid": 4060,
+            "command_line": "\"C:\\Windows\\sysnative\\rundll32.exe\" \"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\f623dc161d4383e4d66d4d43.dll\",#1",
+            "environment_variables": {
+                "UserName": "Administrator",
+                "ComputerName": "EARYWEAEXFLWYN",
+                "WindowsPath": "C:\\Windows",
+                "TempPath": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\",
+                "CommandLine": "\"C:\\Windows\\sysnative\\rundll32.exe\" \"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\f623dc161d4383e4d66d4d43.dll\",#1",
+                "RegisteredOwner": "",
+                "RegisteredOrganization": "",
+                "ProductName": "",
+                "SystemVolumeSerialNumber": "ea83-523a",
+                "SystemVolumeGUID": "c1611bf3-0000-0000-0000-d01200000000",
+                "MachineGUID": ""
+            }
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9802ad3a-d89d-516c-ba46-937448f49ac7",
+            "created": "2023-09-15T19:50:31.531526Z",
+            "modified": "2023-09-15T19:50:31.531526Z",
+            "relationship_type": "creates",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "process--9935732b-edca-4b82-8fd6-42c3b58d948e"
+        },
+        {
+            "type": "file",
+            "spec_version": "2.1",
+            "id": "file--1df7f70e-cd77-5d85-a1c4-a2f15001b300",
+            "hashes": {
+                "MD5": "eb927e0bcf1d9a473adde8b3f87f9e40",
+                "SHA-1": "97aec21042df47d39ac212761729c6be484d064d",
+                "SHA-256": "f623dc161d4383e4d66d4d4321aa8b60300328e3d087565d65768f7d241c2a50",
+                "SSDEEP": "1536:M/u4VC2tHflIsDywe+eiqccj1h3WSzOTLg/tbC9iP5yPPzUD5ncHDUOqFB0Z:M/u2C2tHUweL2cjb74LubFPwwFcjzqk",
+                "sha3_384": "4430d2b4a07246a755818ba15b5ff22e4595452fb7cda776a84fe851b417833cde4557e558a37d2eca4d4b1d06472d05",
+                "TLSH": "5483D0ABB6142A15F1363F3D82FCA416A4E9718123721EDB6A3C70D88716BF5533B742"
+            },
+            "size": 84888,
+            "name": "f623dc161d4383e4d66d4d43"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d277c1e8-3baa-55b1-a38f-5002b9f8aa24",
+            "created": "2023-09-15T19:50:31.532197Z",
+            "modified": "2023-09-15T19:50:31.532197Z",
+            "relationship_type": "related-to",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "file--1df7f70e-cd77-5d85-a1c4-a2f15001b300"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--fcc8784c-e1e0-50cb-87a5-7a4c45917fe3",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SideBySide\\PreferExternalManifest"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--dd685bcd-a43c-5a95-a0c4-5f1b59961d5f",
+            "key": "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\Session Manager\\ResourcePolicies"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--32522819-2ee0-5ca3-8d22-5ae637484641",
+            "key": "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\Nls\\CustomLocale\\en-US"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--2dfce61d-636c-57f1-9202-1ae2cace0299",
+            "key": "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\Nls\\ExtendedLocale\\en-US"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--6dc1ecc2-a4f2-50e8-8b16-7c49405ee65b",
+            "key": "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\Nls\\Locale\\00000409"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--008aaaaa-deca-5ffc-91d3-c0a3dea89e15",
+            "key": "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\Nls\\Language Groups\\1"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--a354f7d6-69e4-5f3d-8445-7443079edcfe",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\DataStore_V1.0\\Disable"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--1eca7d2f-1336-5fd1-aaa6-4cb64aef819c",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\DataStore_V1.0\\DataFilePath"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--c12fc35d-c3cc-5ab9-859e-4a468e3916ef",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\SurrogateFallback\\Plane1"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--056e0d57-6a9c-534c-aca2-1c7d4024fbe2",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\SurrogateFallback\\Plane2"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--5c7f655b-0a1c-5d35-8e81-0d2c74c6e66c",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\SurrogateFallback\\Plane3"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--c6c9e005-4f61-5a7c-9877-022fa9393195",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\SurrogateFallback\\Plane4"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--9291376a-1682-5580-ac68-319c1647b16d",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\SurrogateFallback\\Plane5"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--6245aa33-3b70-548a-9a4c-2334809899c2",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\SurrogateFallback\\Plane6"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--ee028614-564f-5447-a623-f37e071b7c5e",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\SurrogateFallback\\Plane7"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--b8d8c24a-54fe-51a1-8abb-25e9996b85fa",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\SurrogateFallback\\Plane8"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--d3abec98-5115-5744-b97c-d0294467e061",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\SurrogateFallback\\Plane9"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--9ec71580-3f23-53c5-9943-a436df92471d",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\SurrogateFallback\\Plane10"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--a9f949ca-4687-5932-a70b-cbfa7bcf1486",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\SurrogateFallback\\Plane11"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--dcdd1b9f-8e97-5cdc-94f2-d6550cf12530",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\SurrogateFallback\\Plane12"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--21855937-7b2f-5b62-a441-acce73b20a58",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\SurrogateFallback\\Plane13"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--a0bf85dd-22ae-51d4-9ab9-deb900db359f",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\SurrogateFallback\\Plane14"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--3bc4a076-91e3-50b2-a04f-a7d1044970d7",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\SurrogateFallback\\Plane15"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--d6405191-ae67-5112-9fd7-035c0deb15a0",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\LanguagePack\\SurrogateFallback\\Plane16"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--b968e73d-e371-594e-a7bb-dba38a574f78",
+            "key": "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\Nls\\CustomLocale\\en-GB"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--df9b1886-149e-5f4e-b4cd-d689b908213f",
+            "key": "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\Nls\\ExtendedLocale\\en-GB"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--98df70e0-2951-51ff-8b52-599c94c1d7db",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\CTF\\EnableAnchorContext"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--349ef1d5-331e-5139-ae30-3dba8a185813",
+            "key": "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Control\\Nls\\Sorting\\Versions\\000602xx"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--3f3e279c-2a59-5e65-a407-6da150ff87f0",
+            "key": "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\ImmersiveShell\\TabletMode"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--e16241c6-da38-5d58-93de-7784bd64c35c",
+            "key": "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\DWM\\ColorPrevalence"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--a4120351-a5fe-5050-8201-1e83accd7769",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Input\\IsOneCore"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--a7fb6ca5-ce80-5edb-935c-591a8647f2a8",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Input\\ResyncResetTime"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--1fb056d1-7949-50db-a639-c930517b4395",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Input\\MaxResyncAttempts"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--250f6a12-89dd-51f1-a516-017389f6a9d2",
+            "created": "2023-09-15T19:50:31.535169Z",
+            "modified": "2023-09-15T19:50:31.535169Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--fcc8784c-e1e0-50cb-87a5-7a4c45917fe3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c2bf2b15-7370-5d8f-ac92-caff710028fe",
+            "created": "2023-09-15T19:50:31.535944Z",
+            "modified": "2023-09-15T19:50:31.535944Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--dd685bcd-a43c-5a95-a0c4-5f1b59961d5f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e6a7ca24-e95f-5ddd-91c3-910633a73de5",
+            "created": "2023-09-15T19:50:31.536134Z",
+            "modified": "2023-09-15T19:50:31.536134Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--32522819-2ee0-5ca3-8d22-5ae637484641"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--81c09aaf-aab5-57dc-832a-37c6c4529ed1",
+            "created": "2023-09-15T19:50:31.536323Z",
+            "modified": "2023-09-15T19:50:31.536323Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--2dfce61d-636c-57f1-9202-1ae2cace0299"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--46d16d3c-77c6-58c4-aa52-4997337afd7d",
+            "created": "2023-09-15T19:50:31.536539Z",
+            "modified": "2023-09-15T19:50:31.536539Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--6dc1ecc2-a4f2-50e8-8b16-7c49405ee65b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--441e16c8-68c8-5728-959a-94541fd168b4",
+            "created": "2023-09-15T19:50:31.536724Z",
+            "modified": "2023-09-15T19:50:31.536724Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--008aaaaa-deca-5ffc-91d3-c0a3dea89e15"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--34b3c0fe-5262-5a1b-aac3-d2e9708e43db",
+            "created": "2023-09-15T19:50:31.536906Z",
+            "modified": "2023-09-15T19:50:31.536906Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--a354f7d6-69e4-5f3d-8445-7443079edcfe"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b1f6c794-3e42-5c77-96cb-c3d9bc77c8db",
+            "created": "2023-09-15T19:50:31.537086Z",
+            "modified": "2023-09-15T19:50:31.537086Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--1eca7d2f-1336-5fd1-aaa6-4cb64aef819c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--823ace2a-22dd-525c-b03b-023649c36c52",
+            "created": "2023-09-15T19:50:31.537265Z",
+            "modified": "2023-09-15T19:50:31.537265Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--c12fc35d-c3cc-5ab9-859e-4a468e3916ef"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--075e5922-17b7-58c2-9f1f-71211b4958de",
+            "created": "2023-09-15T19:50:31.537446Z",
+            "modified": "2023-09-15T19:50:31.537446Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--056e0d57-6a9c-534c-aca2-1c7d4024fbe2"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4f263c31-d442-54ee-ae72-3eec812ac289",
+            "created": "2023-09-15T19:50:31.537639Z",
+            "modified": "2023-09-15T19:50:31.537639Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--5c7f655b-0a1c-5d35-8e81-0d2c74c6e66c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--dc4509a1-3840-51a2-8344-aba0d0238b37",
+            "created": "2023-09-15T19:50:31.537819Z",
+            "modified": "2023-09-15T19:50:31.537819Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--c6c9e005-4f61-5a7c-9877-022fa9393195"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a6c46ae7-c788-5041-8f07-6ef695ba7c48",
+            "created": "2023-09-15T19:50:31.537996Z",
+            "modified": "2023-09-15T19:50:31.537996Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--9291376a-1682-5580-ac68-319c1647b16d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--92f6e33e-263d-551d-ba86-48bc10f1f81d",
+            "created": "2023-09-15T19:50:31.538175Z",
+            "modified": "2023-09-15T19:50:31.538175Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--6245aa33-3b70-548a-9a4c-2334809899c2"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6d23070b-6d9d-58aa-945d-c33936d63498",
+            "created": "2023-09-15T19:50:31.538354Z",
+            "modified": "2023-09-15T19:50:31.538354Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--ee028614-564f-5447-a623-f37e071b7c5e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--78f6e4a8-b11e-5138-bd65-b85bf4c9b60a",
+            "created": "2023-09-15T19:50:31.538593Z",
+            "modified": "2023-09-15T19:50:31.538593Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--b8d8c24a-54fe-51a1-8abb-25e9996b85fa"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ac621d4e-bef0-5061-88f2-d896ccf15311",
+            "created": "2023-09-15T19:50:31.538777Z",
+            "modified": "2023-09-15T19:50:31.538777Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--d3abec98-5115-5744-b97c-d0294467e061"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1d522566-517c-5956-a5b2-898ed6a05200",
+            "created": "2023-09-15T19:50:31.538955Z",
+            "modified": "2023-09-15T19:50:31.538955Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--9ec71580-3f23-53c5-9943-a436df92471d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0bc6bc98-852b-56ef-80cb-d7abd74d1d55",
+            "created": "2023-09-15T19:50:31.539151Z",
+            "modified": "2023-09-15T19:50:31.539151Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--a9f949ca-4687-5932-a70b-cbfa7bcf1486"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a4643d37-75ae-5baa-8cd4-9af88464c23d",
+            "created": "2023-09-15T19:50:31.539927Z",
+            "modified": "2023-09-15T19:50:31.539927Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--dcdd1b9f-8e97-5cdc-94f2-d6550cf12530"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5dd431f7-fca2-5f17-9a92-d53ace583f4b",
+            "created": "2023-09-15T19:50:31.540116Z",
+            "modified": "2023-09-15T19:50:31.540116Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--21855937-7b2f-5b62-a441-acce73b20a58"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c1355913-c99f-5194-95b7-1f53e5c633c8",
+            "created": "2023-09-15T19:50:31.540299Z",
+            "modified": "2023-09-15T19:50:31.540299Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--a0bf85dd-22ae-51d4-9ab9-deb900db359f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4fda5260-270d-5a14-bd3f-7ca59a75ccee",
+            "created": "2023-09-15T19:50:31.540507Z",
+            "modified": "2023-09-15T19:50:31.540507Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--3bc4a076-91e3-50b2-a04f-a7d1044970d7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--eda4a0a1-135d-5740-9d04-f923ded7d21b",
+            "created": "2023-09-15T19:50:31.540689Z",
+            "modified": "2023-09-15T19:50:31.540689Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--d6405191-ae67-5112-9fd7-035c0deb15a0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ab373097-5750-5382-8562-53785f80e8df",
+            "created": "2023-09-15T19:50:31.54087Z",
+            "modified": "2023-09-15T19:50:31.54087Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--b968e73d-e371-594e-a7bb-dba38a574f78"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6c609015-cfd9-5319-82a2-8ec5fa005455",
+            "created": "2023-09-15T19:50:31.541052Z",
+            "modified": "2023-09-15T19:50:31.541052Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--df9b1886-149e-5f4e-b4cd-d689b908213f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1cb175c1-6ee1-5c28-8a3f-454490b48281",
+            "created": "2023-09-15T19:50:31.541231Z",
+            "modified": "2023-09-15T19:50:31.541231Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--98df70e0-2951-51ff-8b52-599c94c1d7db"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--af241882-3e7d-5ce7-9350-4735eab1c71e",
+            "created": "2023-09-15T19:50:31.541411Z",
+            "modified": "2023-09-15T19:50:31.541411Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--349ef1d5-331e-5139-ae30-3dba8a185813"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--696b9d62-bc73-5830-90b7-e12caf9ecd47",
+            "created": "2023-09-15T19:50:31.541602Z",
+            "modified": "2023-09-15T19:50:31.541602Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--3f3e279c-2a59-5e65-a407-6da150ff87f0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fd8834fa-76df-5654-9969-f60dde1904d9",
+            "created": "2023-09-15T19:50:31.541781Z",
+            "modified": "2023-09-15T19:50:31.541781Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--e16241c6-da38-5d58-93de-7784bd64c35c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1448023c-e49f-5919-96e1-40df1cc8ce5a",
+            "created": "2023-09-15T19:50:31.541959Z",
+            "modified": "2023-09-15T19:50:31.541959Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--a4120351-a5fe-5050-8201-1e83accd7769"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--be92168e-cfdd-52de-a809-7a5465f71bea",
+            "created": "2023-09-15T19:50:31.54214Z",
+            "modified": "2023-09-15T19:50:31.54214Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--a7fb6ca5-ce80-5edb-935c-591a8647f2a8"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fef6b7a5-a7c2-5f0b-b0c3-cc80af66524f",
+            "created": "2023-09-15T19:50:31.542321Z",
+            "modified": "2023-09-15T19:50:31.542321Z",
+            "relationship_type": "reads",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "windows-registry-key--1fb056d1-7949-50db-a639-c930517b4395"
+        },
+        {
+            "type": "mutex",
+            "spec_version": "2.1",
+            "id": "mutex--9d637ae0-bd3c-5bc2-81df-5c508bf29d90",
+            "name": "Local\\SessionImmersiveColorMutex"
+        },
+        {
+            "type": "mutex",
+            "spec_version": "2.1",
+            "id": "mutex--37fd4959-0a67-56c2-a4e7-b45cb02b40d1",
+            "name": "Local\\MSCTF.Asm.MutexDefault1"
+        },
+        {
+            "type": "mutex",
+            "spec_version": "2.1",
+            "id": "mutex--aee7ceac-b5da-59f7-932b-1bf679202010",
+            "name": "CicLoadWinStaWinSta0"
+        },
+        {
+            "type": "mutex",
+            "spec_version": "2.1",
+            "id": "mutex--0ba40351-c77d-56a9-9844-8c6394934038",
+            "name": "Local\\MSCTF.CtfMonitorInstMutexDefault1"
+        },
+        {
+            "type": "mutex",
+            "spec_version": "2.1",
+            "id": "mutex--3decab54-9094-539f-b98b-7f311c252230",
+            "name": "Local\\SM0:3020:120:WilError_01"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1ca581ef-8825-5b8f-9cb1-38fe96de2104",
+            "created": "2023-09-15T19:50:31.543825Z",
+            "modified": "2023-09-15T19:50:31.543825Z",
+            "relationship_type": "creates",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "mutex--9d637ae0-bd3c-5bc2-81df-5c508bf29d90"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8ec92aac-9403-5b93-8bf3-5302e6bff728",
+            "created": "2023-09-15T19:50:31.544029Z",
+            "modified": "2023-09-15T19:50:31.544029Z",
+            "relationship_type": "creates",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "mutex--37fd4959-0a67-56c2-a4e7-b45cb02b40d1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--64f5516e-ad1f-58c1-abc7-28da8ad345da",
+            "created": "2023-09-15T19:50:31.544216Z",
+            "modified": "2023-09-15T19:50:31.544216Z",
+            "relationship_type": "creates",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "mutex--aee7ceac-b5da-59f7-932b-1bf679202010"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0174df5e-50db-5b06-ae58-132b3824b696",
+            "created": "2023-09-15T19:50:31.544397Z",
+            "modified": "2023-09-15T19:50:31.544397Z",
+            "relationship_type": "creates",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "mutex--0ba40351-c77d-56a9-9844-8c6394934038"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--93b5d6b8-10e4-589e-8cd3-1958c1ab15f7",
+            "created": "2023-09-15T19:50:31.544596Z",
+            "modified": "2023-09-15T19:50:31.544596Z",
+            "relationship_type": "creates",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "mutex--3decab54-9094-539f-b98b-7f311c252230"
+        },
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--5084240c-3a33-4931-9dcd-e4b6c5bc1ff3",
+            "created_by_ref": "identity--e769b29f-65d2-4cd3-9dbf-aed5609242af",
+            "created": "2023-06-08T16:30:49.442237Z",
+            "modified": "2023-06-08T16:30:49.442237Z",
+            "name": "AMA_malware_bazaar",
+            "description": "Autogenerated extension definition",
+            "schema": "{'$schema': 'http://json-schema.org/schema#', 'type': 'object', 'properties': {'x_malware_bazaar_tags': {'type': 'array', 'items': {'type': 'string'}}}, 'required': ['x_malware_bazaar_tags']}",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ]
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--e769b29f-65d2-4cd3-9dbf-aed5609242af",
+            "created": "2022-07-06T17:12:04.766199Z",
+            "modified": "2022-07-06T17:12:04.766199Z",
+            "name": "AMA_Project"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.567865Z",
+            "modified": "2023-09-15T19:50:31.567865Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.568438Z",
+            "modified": "2023-09-15T19:50:31.568438Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.568995Z",
+            "modified": "2023-09-15T19:50:31.568995Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.569545Z",
+            "modified": "2023-09-15T19:50:31.569545Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.570149Z",
+            "modified": "2023-09-15T19:50:31.570149Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.57071Z",
+            "modified": "2023-09-15T19:50:31.57071Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.572073Z",
+            "modified": "2023-09-15T19:50:31.572073Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.572681Z",
+            "modified": "2023-09-15T19:50:31.572681Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.573249Z",
+            "modified": "2023-09-15T19:50:31.573249Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.573804Z",
+            "modified": "2023-09-15T19:50:31.573804Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.574381Z",
+            "modified": "2023-09-15T19:50:31.574381Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.574955Z",
+            "modified": "2023-09-15T19:50:31.574955Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.575488Z",
+            "modified": "2023-09-15T19:50:31.575488Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.576104Z",
+            "modified": "2023-09-15T19:50:31.576104Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.576641Z",
+            "modified": "2023-09-15T19:50:31.576641Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.577225Z",
+            "modified": "2023-09-15T19:50:31.577225Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.577808Z",
+            "modified": "2023-09-15T19:50:31.577808Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.578395Z",
+            "modified": "2023-09-15T19:50:31.578395Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.579992Z",
+            "modified": "2023-09-15T19:50:31.579992Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.580546Z",
+            "modified": "2023-09-15T19:50:31.580546Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.581078Z",
+            "modified": "2023-09-15T19:50:31.581078Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.581687Z",
+            "modified": "2023-09-15T19:50:31.581687Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.582226Z",
+            "modified": "2023-09-15T19:50:31.582226Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.582833Z",
+            "modified": "2023-09-15T19:50:31.582833Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e24c4a0-dfc2-5fca-9373-8f21cc9a0fc2",
+            "created": "2023-09-15T19:50:31.584145Z",
+            "modified": "2023-09-15T19:50:31.584145Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--25845c4b-e320-59fe-bf6a-3bee6b3a9c02",
+            "created": "2023-09-15T19:50:31.568252Z",
+            "modified": "2023-09-15T19:50:31.568252Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--190bef8b-f25d-5448-aad7-ed7e877d2ad3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6fe7afc4-3257-5574-ac62-566f3eebafe6",
+            "created": "2023-09-15T19:50:31.568813Z",
+            "modified": "2023-09-15T19:50:31.568813Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--d65bb9bb-9e4f-5cbc-a308-da12e62554d9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--75ac50f3-65ac-544c-9678-d33103d98f7c",
+            "created": "2023-09-15T19:50:31.569352Z",
+            "modified": "2023-09-15T19:50:31.569352Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--4948f5c1-65ce-5fb1-9362-ee99745d6f0f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0ccd4d40-48d2-54dd-82ba-cd665aa7f153",
+            "created": "2023-09-15T19:50:31.569955Z",
+            "modified": "2023-09-15T19:50:31.569955Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--9f4aa1fa-11ee-53a9-8635-04df07fcb034"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--978330c0-04fa-53a5-baae-b95fd8fcc843",
+            "created": "2023-09-15T19:50:31.57052Z",
+            "modified": "2023-09-15T19:50:31.57052Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--9dc2d09c-225c-5b91-9406-658b2bcb3278"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--273cb591-6893-519d-94e5-11c96e14e3dd",
+            "created": "2023-09-15T19:50:31.571065Z",
+            "modified": "2023-09-15T19:50:31.571065Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--5394c1da-257b-5902-a8c0-0454d2f9374f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9ad68a0d-df4c-5f37-a444-0b85911d1b70",
+            "created": "2023-09-15T19:50:31.572496Z",
+            "modified": "2023-09-15T19:50:31.572496Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--c88bb3fc-f5b1-5805-a900-edbe241e280c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e1643bad-f8e6-53f1-90f7-d440e6d0304f",
+            "created": "2023-09-15T19:50:31.573068Z",
+            "modified": "2023-09-15T19:50:31.573068Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--01f2df57-934e-560c-9d01-d318fc1757f0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ab08a88d-38c7-5ed8-9728-a0e65e734d88",
+            "created": "2023-09-15T19:50:31.573615Z",
+            "modified": "2023-09-15T19:50:31.573615Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--716a96db-67b8-5af0-bf55-a325237880ac"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4786216e-1deb-5a3c-ac74-6afc9f6021c5",
+            "created": "2023-09-15T19:50:31.574193Z",
+            "modified": "2023-09-15T19:50:31.574193Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--2a029988-f96f-55cc-b6b3-806475c94745"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--62f9c965-0fc0-5570-96c8-533472d7920f",
+            "created": "2023-09-15T19:50:31.574766Z",
+            "modified": "2023-09-15T19:50:31.574766Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--c4d0b236-7b1c-517e-ba7c-75ca8d8d9845"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c7057fcc-3f32-59cd-b3f8-409c8b446408",
+            "created": "2023-09-15T19:50:31.57531Z",
+            "modified": "2023-09-15T19:50:31.57531Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--c952a803-10e1-525e-b239-c29feec3a03c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--eb0d0a3b-d64f-5fbf-a191-9b5c3e1ec06a",
+            "created": "2023-09-15T19:50:31.575917Z",
+            "modified": "2023-09-15T19:50:31.575917Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--a0225387-41f0-575b-832e-405ad1bed60c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4c511c10-ce41-52b7-ab63-85169dfc28b1",
+            "created": "2023-09-15T19:50:31.576463Z",
+            "modified": "2023-09-15T19:50:31.576463Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--d17adbdf-3afa-5c98-9904-2c8a5787e448"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--190080c7-2b99-5f04-a501-e72d16606331",
+            "created": "2023-09-15T19:50:31.577041Z",
+            "modified": "2023-09-15T19:50:31.577041Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--8a6afe87-4a08-54d3-9b4b-4e4faf4f4fb9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f7303b8b-3155-5669-8cbe-3116ebab4be7",
+            "created": "2023-09-15T19:50:31.577587Z",
+            "modified": "2023-09-15T19:50:31.577587Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--6bebf92f-58da-5293-9d8c-b2b61ae11c90"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9cb74c5d-3d81-5c6e-b93a-edea62ea79d0",
+            "created": "2023-09-15T19:50:31.578211Z",
+            "modified": "2023-09-15T19:50:31.578211Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--956017a5-9dcc-5443-a199-653a9402f5c2"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--816bbca7-539a-5eb7-90e9-fe48fd225bfe",
+            "created": "2023-09-15T19:50:31.579799Z",
+            "modified": "2023-09-15T19:50:31.579799Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--f726074c-2a73-556a-bd0f-3c08e8a443d0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c12c3f7e-dc99-5a73-9e04-3c8a9296e4ee",
+            "created": "2023-09-15T19:50:31.580354Z",
+            "modified": "2023-09-15T19:50:31.580354Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--4f5776c7-15c7-5247-b68d-ffaf37491b88"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b5290a2b-3f4a-5c45-b298-262b0ee233cb",
+            "created": "2023-09-15T19:50:31.5809Z",
+            "modified": "2023-09-15T19:50:31.5809Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--aec03f13-ed04-55a4-84cf-c3ab3591c272"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a55933c6-9c1b-5f06-b7ce-afd4e7cae819",
+            "created": "2023-09-15T19:50:31.581508Z",
+            "modified": "2023-09-15T19:50:31.581508Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--efc4c77d-474d-5eed-bfb2-e4207855b5b6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--77eb6e7f-ae00-5bcd-872b-f95d418521b2",
+            "created": "2023-09-15T19:50:31.582043Z",
+            "modified": "2023-09-15T19:50:31.582043Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--a8029a32-78e2-53da-a3eb-bc09c3dc13cb"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3a95d6d6-363c-5133-8175-e7dd592ea576",
+            "created": "2023-09-15T19:50:31.582647Z",
+            "modified": "2023-09-15T19:50:31.582647Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--46c893c4-79b2-5b78-b965-79dff61460c4"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--903d1621-732d-545f-af9f-325ac250642d",
+            "created": "2023-09-15T19:50:31.583967Z",
+            "modified": "2023-09-15T19:50:31.583967Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--7810bef0-4579-5cd7-b508-0f4632c9fffb"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d275dabf-89dd-51dd-8e0f-191d6090a3cc",
+            "created": "2023-09-15T19:50:31.584503Z",
+            "modified": "2023-09-15T19:50:31.584503Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1a7370e5-e9a6-4bd2-86be-8b8b12029bef",
+            "target_ref": "network-traffic--f9f9c5cc-1309-53a0-b24e-dd48e2af0b0a"
+        },
+        {
+            "type": "ipv4-addr",
+            "spec_version": "2.1",
+            "id": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "value": "192.168.13.4"
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--190bef8b-f25d-5448-aad7-ed7e877d2ad3",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 63293,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--d65bb9bb-9e4f-5cbc-a308-da12e62554d9",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 61371,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--4948f5c1-65ce-5fb1-9362-ee99745d6f0f",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 61550,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--9f4aa1fa-11ee-53a9-8635-04df07fcb034",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 57801,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--9dc2d09c-225c-5b91-9406-658b2bcb3278",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 51855,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--5394c1da-257b-5902-a8c0-0454d2f9374f",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 64731,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--c88bb3fc-f5b1-5805-a900-edbe241e280c",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 63106,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--01f2df57-934e-560c-9d01-d318fc1757f0",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 56115,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--716a96db-67b8-5af0-bf55-a325237880ac",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 51741,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--2a029988-f96f-55cc-b6b3-806475c94745",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--f9ff4fd0-9b8d-555e-a905-729c599e7f79",
+            "src_port": 138,
+            "dst_port": 138,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--c4d0b236-7b1c-517e-ba7c-75ca8d8d9845",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 54952,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--c952a803-10e1-525e-b239-c29feec3a03c",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 61248,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--a0225387-41f0-575b-832e-405ad1bed60c",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 61490,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--d17adbdf-3afa-5c98-9904-2c8a5787e448",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--418f7990-4010-5aa5-9255-cdde91000ee2",
+            "src_port": 137,
+            "dst_port": 137,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--8a6afe87-4a08-54d3-9b4b-4e4faf4f4fb9",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 52403,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--6bebf92f-58da-5293-9d8c-b2b61ae11c90",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 56953,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--956017a5-9dcc-5443-a199-653a9402f5c2",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 53590,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--f726074c-2a73-556a-bd0f-3c08e8a443d0",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 59510,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--4f5776c7-15c7-5247-b68d-ffaf37491b88",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 52897,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--aec03f13-ed04-55a4-84cf-c3ab3591c272",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 62945,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--efc4c77d-474d-5eed-bfb2-e4207855b5b6",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 52685,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--a8029a32-78e2-53da-a3eb-bc09c3dc13cb",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 52048,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--46c893c4-79b2-5b78-b965-79dff61460c4",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 56102,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--7810bef0-4579-5cd7-b508-0f4632c9fffb",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 61779,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "spec_version": "2.1",
+            "id": "network-traffic--f9f9c5cc-1309-53a0-b24e-dd48e2af0b0a",
+            "src_ref": "ipv4-addr--c37948cb-3974-5682-8e31-e9e503b064a3",
+            "dst_ref": "ipv4-addr--e3549acc-b52c-5d07-8ea5-8ba633f5b9a1",
+            "src_port": 53774,
+            "dst_port": 53,
+            "protocols": [
+                "udp"
+            ]
+        }
+    ]
+}
