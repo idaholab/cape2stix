@@ -175,3 +175,5 @@ clustering_scripts/updated_json/just_rels.json
 *results.json
 output/
 input/*
+output*/
+!keepOut/*.json
