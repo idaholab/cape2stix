@@ -4,15 +4,17 @@ import os
 import logging
 import argparse
 import json
+import networkx as nx
+from networkx.algorithms import approximation
+import matplotlib.pyplot as plt
 from collections import Counter
 from pprint import pformat
 from tqdm import tqdm
 
 # pylint: disable=logging-not-lazy,broad-exception-caught,trailing-whitespace,logging-fstring-interpolation
 
-#TODO: I want the count_unique_objects in here
-class Connectivity:
-    "Class to measure the total connectivity of STIX bundles"
+class Aggregater:
+    "Class to aggregate stix results"
 #-------------------
 
     def __init__(self, target=None,verbose=False):
@@ -24,10 +26,19 @@ class Connectivity:
         self.n_dups = []
         self.types = []
 
+    def agg_load(self):
+        "Runs aggregation on target"
+        if os.path.isfile(self.target):
+            logging.info("Aggregating target file.")
+            self.agg_file(self.target)
+        elif os.path.isdir(self.target):
+            logging.info("Aggregating target directory. This may take awhile. . .")
+            self.agg_dir()
+ 
 #-------------------
 
-    def file_parse(self, file):
-        "Launches connectivity analysis for a single file"
+    def agg_file(self, file):
+        "Launches aggregation for a single file"
         if ".gitkeep" in file:
             return
         try:
@@ -53,42 +64,49 @@ class Connectivity:
         self.e_dups.extend(list(temp_e))
         self.n_dups.extend(list(temp_n))
 
+#-------------------
+
+    def agg_dir(self):
+        "Launches aggregation for a directory"
+        for file in tqdm(os.listdir(self.target)):
+            self.agg_file(os.path.join(self.target,file))
+
+#-------------------
+
     def count_unique_objects(self):
         "gets number of unique types and logs stats"
         for _, typ in self.nodes:
             self.types.append(typ)
         
-        stats = f'''Number of Total Edges: {len(self.e_dups)}
-Number of Deduplicated Edges: {len(self.edges)}
-Number of Total Nodes: {len(self.n_dups)}
-Number of Deduplicated Nodes: {len(self.nodes)}
-Types: {pformat(Counter(self.types))}'''
+        stats = f'''
+        Number of Total Edges: {len(self.e_dups)}
+        Number of Deduplicated Edges: {len(self.edges)}
+        Number of Total Nodes: {len(self.n_dups)}
+        Number of Deduplicated Nodes: {len(self.nodes)}
+        Types: {pformat(Counter(self.types))}'''
         
         logging.info(stats)
         if not self.verbose:
-            # NOTE: make sure to print the stats even if not run as verbose
-            print(stats)
-
-#-------------------
-    def dir_connectivity(self):
-        "Launches connectivity analysis for a directory"
-        for file in tqdm(os.listdir(self.target)):
-            self.file_parse(os.path.join(self.target,file))
+            print(stats) # makes sure to print the stats even if not run as verbose
 
 #-------------------
     def analysis_connect(self):
         "Runs Connectivity analysis on class"
         #TODO: I want number of subgraphs, metrics, all that
+        # nx.cluster.average_clustering(G) is like: if a->b,b->c, how often is a->c 
+        self.nodes={n for (n, t) in self.nodes}
+        G = nx.DiGraph()
+        G.add_nodes_from(self.nodes)
+        G.add_edges_from(self.edges)
 
-#-------------------
+        # make an undirected copy of the digraph
 
-    def launch(self):
-        "Runs Connectivitiy"
-        if os.path.isfile(self.target):
-            self.file_parse(self.target)
-        elif os.path.isdir(self.target):
-            self.dir_connectivity()
-
+        # extract subgraphs
+        sub_graphs = nx.weakly_connected_components(G)
+        print(len(list(sub_graphs)))
+        
+        # print((nx.density(G)))
+        # approximation.node_connectivity(G)
 #================================================
 
 def parse_args(args):
@@ -121,12 +139,14 @@ if __name__ == '__main__':
         log_level = {"debug": logging.DEBUG, "info": logging.INFO, "warn": logging.WARN, "default": logging.NOTSET}[
         args.log_level
         ]
-        logging.basicConfig(filename='LOG.log', encoding='utf-8', level=log_level)
+        logging.basicConfig(filename='stats.log', encoding='utf-8', level=log_level)
     try:
-        if args.target:
-            Connect = Connectivity(args.target, args.verbose)
-            Connect.launch()
-            Connect.count_unique_objects()
+        if args.target is None:
+            args.target = "output"
+        Analysis = Aggregater(args.target, args.verbose)
+        Analysis.agg_load()
+        # Analysis.count_unique_objects()
+        Analysis.analysis_connect()
 
     except Exception as err:
         logging.exception(err)
