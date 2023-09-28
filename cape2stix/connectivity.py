@@ -5,6 +5,7 @@ import logging
 import argparse
 import json
 import networkx as nx
+import copy
 from networkx.algorithms import approximation
 import matplotlib.pyplot as plt
 from collections import Counter
@@ -99,12 +100,32 @@ class Aggregater:
         G.add_nodes_from(self.nodes)
         G.add_edges_from(self.edges)
 
-        # make an undirected copy of the digraph
 
         # extract subgraphs
-        sub_graphs = nx.weakly_connected_components(G)
-        print(len(list(sub_graphs)))
-        
+        sub_graphs_gen = nx.weakly_connected_components(G)
+        sub_graphs = list(sub_graphs_gen)
+        logging.info(f"Number of Subgraphs: {len(sub_graphs)}" ) 
+
+        max_sub = max(sub_graphs)      
+        subbed = G.subgraph(list(max_sub))
+
+        # check centrality 
+        total = 0
+        count = 0
+        biggest = ("",0)
+        for key, value in nx.closeness_centrality(subbed).items():
+            total += value
+            count+=1
+            if biggest[1] < value:
+                biggest = (key, value)
+        logging.info(f"CENTRALITY\n\tAverage Centrality: {total/count}\n\Highest Centrality: {biggest}")
+            
+        # check diameter #NOTE: doesn't work since the graph is not strongly connected
+        # print(nx.is_strongly_connected(subbed))
+        # logging.info(nx.diameter(subbed))
+                
+        # run centrality and diameter
+        # if the central point is the ip, then  run
         # print((nx.density(G)))
         # approximation.node_connectivity(G)
 #================================================
@@ -135,10 +156,12 @@ def parse_args(args):
 
 if __name__ == '__main__':
     args = parse_args(sys.argv[1:])
-    if not args.verbose:
-        log_level = {"debug": logging.DEBUG, "info": logging.INFO, "warn": logging.WARN, "default": logging.NOTSET}[
+    log_level = {"debug": logging.DEBUG, "info": logging.INFO, "warn": logging.WARN, "default": logging.NOTSET}[
         args.log_level
         ]
+    if args.verbose:
+        logging.basicConfig(level=log_level)
+    else: 
         logging.basicConfig(filename='stats.log', encoding='utf-8', level=log_level)
     try:
         if args.target is None:
