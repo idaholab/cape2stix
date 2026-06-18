@@ -1,3 +1,10 @@
+> [!WARNING]
+> **This repository has been archived and is no longer maintained.**
+> The code is provided for historical reference and may contain unpatched
+> or unknown vulnerabilities. It should not be used in production systems.
+
+---
+
 # CAPE2STIX
 The purpose of this project is to automatically analyze malware in CAPE and then convert CAPE data into STIX 2.1 data. <br>CAPE (Config And Payload Extraction) is a malware sandbox. It was derived from Cuckoo with the goal of adding automated malware unpacking and config extraction. Automated unpacking allows classification based on Yara signatures to complement network (Suricata) and behavior (API) signatures.
 There is a free community instance online which anyone can use: [CAPE Sandbox](https://capesandbox.com)
